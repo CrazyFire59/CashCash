@@ -1,0 +1,63 @@
+INSERT INTO Employes (employe_id, employe_num_matricule, employe_nom, employe_prenom, employe_adresse, employe_date_embauche)
+VALUES
+(1, 1001, 'Dupont', 'Jean', '123 Rue de la Ville', '2020-01-15'),
+(2, 1002, 'Martin', 'Sophie', '456 Avenue des Arbres', '2019-03-20'),
+(3, 1003, 'Tremblay', 'Pierre', '789 Chemin de la Plage', '2022-05-10');
+
+INSERT INTO Agence_gerant (employe_id)
+VALUES
+(2),
+(3);
+
+INSERT INTO Techniciens (employe_id, technicien_telephone, technicien_nom_qualification, technicien_date_obtention_qualification, technicien_mail)
+VALUES
+(1, '123-456-7890', 'Technicien en informatique', '2020-02-20', 'jean.dupont@email.com');
+
+INSERT INTO Fiche (fiche_num, fiche_heure, fiche_date, fiche_temps_technicien, fiche_commentaire, employe_id)
+VALUES
+(1, '10:00', '2023-10-10', '02:30:00', 'Réparation du TPV', 1),
+(2, '14:30', '2023-10-11', '01:45:00', 'Maintenance du système', 1);
+
+INSERT INTO Agences (agence_num, agence_adresse, agence_nom, agence_telephone, agence_mail, employe_id, employe_id_1)
+VALUES
+(101, '123 Rue Principale', 'Agence A', '555-123-4567', 'agencea@email.com', 2, 2),
+(102, '456 Boulevard Central', 'Agence B', '555-987-6543', 'agenceb@email.com', 3, 3);
+
+INSERT INTO Clients (client_num, client_raison_sociale, client_num_SIREN, client_code_APE, client_adresse, client_téléphone, client_num_télécopie, client_email, agence_num)
+VALUES
+(1001, 'Client A', 123456789, 'APE123', '789 Rue des Clients', '555-111-2222', 0, 'clienta@email.com', 101),
+(1002, 'Client B', 987654321, 'APE456', '321 Avenue des Entreprises', '555-333-4444', 0, 'clientb@email.com', 102);
+
+INSERT INTO TPV (tpv_id, tpv_peripherique, agence_num)
+VALUES
+(1, 'Terminal 1', 101),
+(2, 'Terminal 2', 102);
+
+INSERT INTO Contrats (contrat_num, contrat_type, contrat_date_signature, contrat_date_echeance, contrat_date_renouvellement, client_num)
+VALUES
+(10001, 'Contrat A', '2023-01-05', '2024-01-05', '2024-01-05', 1001),
+(10002, 'Contrat B', '2023-02-15', '2024-02-15', '2024-02-15', 1002);
+
+INSERT INTO Interventions (intervention_id, intervention_date, intervention_heure, client_num, employe_id)
+VALUES
+(1, '2023-10-12', '08:30:00', 1001, 1),
+(2, '2023-10-13', '14:00:00', 1002, 1);
+
+INSERT INTO Materiels (materiel_num_serie, materiel_date_vente, materiel_date_installation, materiel_prix_vente, materiel_emplacement, materiel_date_fin_garantie, intervention_id, materiel_type_id)
+VALUES
+(100001, '2022-12-01', '2022-12-15', 1500.00, 'Emplacement 1', 5, 1, 1),
+(100002, '2022-11-15', '2022-11-30', 1200.00, 'Emplacement 2', 5, 1, 2);
+
+
+INSERT INTO couvrir (materiel_num_serie, contrat_num)
+VALUES
+(100001, 10001),
+(100002, 10002);
+
+INSERT INTO petites_caisses (tpv_id)
+VALUES
+(1);
+
+INSERT INTO caisses_bâties (tpv_id)
+VALUES
+(2);
