@@ -3,7 +3,7 @@
 function connexionPDO() {
     $login = "root";
     $mdp = "";
-    $bd = "cashcashbdd";
+    $bd = "cashcash";
     $serveur = "127.0.0.1";
 
     try {

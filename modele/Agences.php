@@ -1,6 +1,6 @@
 <?php
 
-    public function getAllClients(){
+    public function getAllAgences(){
 
         $db = $this->connectDB();
 

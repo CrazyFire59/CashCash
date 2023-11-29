@@ -10,16 +10,16 @@ body {
     background-color: #f2f2f2;
 }
 h1 {
-    margin-top: 50px;
+    /* margin-top: 2%; */
     color: #333;
 
 }
 
-form {
+.connexion-form {
     margin-left: 30%;
     margin-right: 30%;
     text-align: left;
-    margin-top: 50px;
+    margin-top: 2%;
     background-color: #fff;
     padding: 20px;
     border-radius: 5px;
@@ -46,7 +46,7 @@ input[type="submit"]:hover {
     background-color: #0D9DCB;
 }
 .logo {
-    width: 15%;
+    width: 13%;
     margin-bottom: 20px;
     margin-top: 20px;
     margin-left: 20px;
@@ -70,16 +70,11 @@ input[type="submit"]:hover {
     margin-right: 20px;
     text-align: left;
     width: 50%;
-    margin-bottom: 20px;
-    margin-top: 20px;
+    margin-top: 1%;
     margin-left: 20px;
     margin-right: 20px;
-    margin-bottom: 20px;
 }
 
-p {
-    margin-bottom: 10px;
-}
 label {
     display: block;
     margin-bottom: 5px;
@@ -102,4 +97,21 @@ input[type="submit"]:hover {
     background-color: #0D9DCB;
     box-shadow: none;
     transform: translateY(2px);
+}
+
+.recherche {
+    margin-left: 20%;
+    margin-right: 20%;
+    margin-top: 2%;
+    text-align: center;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.sous-conteneur {
+    display: flex;
+    justify-content: space-around;
+
 }
