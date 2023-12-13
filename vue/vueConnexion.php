@@ -13,8 +13,8 @@
         <img class="line2" src="./images/Line 3.png" alt="ligne"> <br>
         <form action="./?action=connexion" method="post" class="connexion-form">
             <p>
-                <label for="login">Login</label>
-                <input type="text" name="login" id="login">
+                <label for="username">username</label>
+                <input type="text" name="username" id="username">
             </p>
             <p>
                 <label for="password">Mot de passe</label>

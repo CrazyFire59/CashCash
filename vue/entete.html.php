@@ -2,7 +2,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" type="text/css" href="../css/style.css">
+        <link rel="stylesheet" type="text/css" href="./css/style.css">
         <title>Entete</title>
     </head>
     
@@ -10,12 +10,12 @@
         <header>
             <div class="menu-navigation">
                 <div class="logonav">
-                    <img src="../images/CashCash.png" alt="logonav">
+                    <img src="./images/CashCash.png" alt="logonav">
                 </div>
                 <div class="liens">
                     <ul>
-                        <li><a href="profile.php">Profile</a></li>
-                        <li><a href="logout.php">Deconnexion</a></li>
+                        <li><a href="<?php $racine ?>/controleur/monProfil.php">Profile</a></li>
+                        <li><a href="<?php $racine ?>/controleur/deconnexion.php">Deconnexion</a></li>
                     </ul>
                 </div>
             </div>

@@ -4,23 +4,17 @@ if ($_SERVER["SCRIPT_FILENAME"] == __FILE__) {
 }
 include_once "$racine/modele/connexion.inc.php";
 
-// récupération des données GET, POST, et SESSION
-if (isset($_POST["username"]) && isset($_POST["password"])) {
-    $username = $_POST["username"];
-    $password = $_POST["password"];
-
-    // appel de la fonction de connexion
-    login($username, $password);
-}
-
-// si l'utilisateur est connecté on redirige vers le controleur monProfil
-if (isLoggedOn()) {
-    include "$racine/controleur/monProfil.php";
-} else {
-    // l'utilisateur n'est pas connecté, on affiche le formulaire de connexion
-    // appel du script de vue 
-    $titre = "pas bon";
+// Vérifier si l'utilisateur est connecté
+if (!isLoggedOn()) {
+    // Si l'utilisateur n'est pas connecté, afficher le formulaire de connexion
+    $titre = "Connexion";
     include "$racine/vue/vueConnexion.php";
     include "$racine/vue/pied.html.php";
+    exit(); // Arrêter l'exécution pour afficher le formulaire de connexion
 }
+
+// Si l'utilisateur est connecté, inclure les informations de profil
+include "$racine/vue/entete.html.php";
+include "$racine/vue/vueMonProfil.php";
+include "$racine/vue/pied.html.php";
 ?>

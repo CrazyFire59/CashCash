@@ -1,18 +1,18 @@
 <?php
+    class Client extends Bdd {
+    function getAllClients(){
 
-    public function getAllClients(){
+        $db = $this->connexionPDO();
 
-        $db = $this->connectDB();
-
-        $requete = "SELECT * FROM agences";
+        $requete = "SELECT * FROM client";
 
         $statment = $db->prepare($requete);
 
         $statment->execute();
 
-        $articles = $statment->fetchAll();
+        $clients = $statment->fetchAll();
 
-        return $agences;
+        return $clients;
     }
-
+    }
 ?>
