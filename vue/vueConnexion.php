@@ -1,17 +1,17 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>Connexion</title>
-        <link rel="stylesheet" href="../css/style.css">
+        <title><?php echo $titre ?></title>
+        <link rel="stylesheet" href="./css/style.css">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="icon" type="image/png" href="../images/CashCash.png" />
+        <link rel="icon" type="image/png" href="./images/CashCash.png" />
     </head>
     <body>
-        <img class="logo" src="../images/CashCash.png" alt="logo">
+        <img class="logo" src="./images/CashCash.png" alt="logo">
         <h1>Connexion</h1>
         <!--<img class="line1" src="../images/Line 4.png" alt="ligne"> -->
-        <img class="line2" src="../images/Line 3.png" alt="ligne"> <br>
-        <form action="" method="post" class="connexion-form">
+        <img class="line2" src="./images/Line 3.png" alt="ligne"> <br>
+        <form action="./?action=connexion" method="post" class="connexion-form">
             <p>
                 <label for="login">Login</label>
                 <input type="text" name="login" id="login">
@@ -24,5 +24,3 @@
                 <input type="submit" value="Se connecter">
             </p>
         </form>
-    </body>
-</html>

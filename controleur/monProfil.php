@@ -1,39 +1,26 @@
 <?php
-if ( $_SERVER["SCRIPT_FILENAME"] == __FILE__ ){
-    $racine="..";
+if ($_SERVER["SCRIPT_FILENAME"] == __FILE__) {
+    $racine = "..";
 }
-include_once "$racine/modele/authentification.inc.php";
-include_once "$racine/modele/bd.utilisateur.inc.php";
-include_once "$racine/modele/bd.typecuisine.inc.php";
-include_once "$racine/modele/bd.resto.inc.php";
+include_once "$racine/modele/connexion.inc.php";
 
-// creation du menu burger
-$menuBurger = array();
-$menuBurger[] = Array("url"=>"./?action=profil","label"=>"Consulter mon profil");
-$menuBurger[] = Array("url"=>"./?action=updProfil","label"=>"Modifier mon profil");
+// récupération des données GET, POST, et SESSION
+if (isset($_POST["username"]) && isset($_POST["password"])) {
+    $username = $_POST["username"];
+    $password = $_POST["password"];
 
+    // appel de la fonction de connexion
+    login($username, $password);
+}
 
-// recuperation des donnees GET, POST, et SESSION
-
-// appel des fonctions permettant de recuperer les donnees utiles a l'affichage 
-if (isLoggedOn()){
-    $mailU = getMailULoggedOn();
-    $util = getUtilisateurByMailU($mailU);
-    
-    $mesRestosAimes = getRestosAimesByMailU($mailU);
-    
-    $mesTypeCuisineAimes = getTypesCuisinePreferesByMailU($mailU);
-    
-    // appel du script de vue qui permet de gerer l'affichage des donnees
-    $titre = "Mon profil";
-    include "$racine/vue/entete.html.php";
-    include "$racine/vue/vueMonProfil.php";
+// si l'utilisateur est connecté on redirige vers le controleur monProfil
+if (isLoggedOn()) {
+    include "$racine/controleur/monProfil.php";
+} else {
+    // l'utilisateur n'est pas connecté, on affiche le formulaire de connexion
+    // appel du script de vue 
+    $titre = "pas bon";
+    include "$racine/vue/vueConnexion.php";
     include "$racine/vue/pied.html.php";
 }
-else{
-    $titre = "Mon profil";
-    include "$racine/vue/entete.html.php";
-    include "$racine/vue/pied.html.php";
-}
-
 ?>

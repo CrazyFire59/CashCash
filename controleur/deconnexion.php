@@ -2,7 +2,7 @@
 if ( $_SERVER["SCRIPT_FILENAME"] == __FILE__ ){
     $racine="..";
 }
-include_once "$racine/modele/authentification.inc.php";
+include_once "$racine/modele/connexion.inc.php";
 
 // recuperation des donnees GET, POST, et SESSION
 
@@ -14,10 +14,8 @@ logout();
                 
 
 // appel du script de vue qui permet de gerer l'affichage des donnees
-$titre = "authentification";
-include "$racine/vue/entete.html.php";
-include "$racine/vue/vueAuthentification.php";
-include "$racine/vue/pied.html.php";
+$titre = "Connexion";
+include "$racine/vue/vueConnexion.php";
 
 
 ?>
