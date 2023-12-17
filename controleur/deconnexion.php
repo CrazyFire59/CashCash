@@ -4,18 +4,10 @@ if ( $_SERVER["SCRIPT_FILENAME"] == __FILE__ ){
 }
 include_once "$racine/modele/connexion.inc.php";
 
-// recuperation des donnees GET, POST, et SESSION
+$connexionModel->logout();
 
-// appel des fonctions permettant de recuperer les donnees utiles a l'affichage 
-
-// traitement si necessaire des donnees recuperees
-logout();
-
-                
-
-// appel du script de vue qui permet de gerer l'affichage des donnees
-$titre = "Connexion";
-include "$racine/vue/vueConnexion.php";
+include "$racine/controleur/connexion.php";
+echo "Vous avez bien été déconnecté.";
 
 
 ?>

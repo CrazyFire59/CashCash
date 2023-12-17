@@ -6,6 +6,9 @@ class ConnexionModel {
 
     public function __construct($bddInstance) {
         $this->bdd = $bddInstance;
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
     }
 
     public function login($username, $password) {
@@ -16,7 +19,7 @@ class ConnexionModel {
         $statement->execute();
         $user = $statement->fetch(PDO::FETCH_ASSOC);
         if ($user) {
-            session_start();
+            //session_start();
             $_SESSION['username'] = $user['username'];
             $_SESSION['job'] = $user['employe_num_matricule'];
             return true;
@@ -26,7 +29,7 @@ class ConnexionModel {
     }
 
     public function logout() {
-        session_start();
+        //session_start();
         $_SESSION = array();
         session_destroy();
     }
@@ -42,8 +45,12 @@ class ConnexionModel {
     }
 
     public function isLoggedOn() {
-        session_start();
-        return isset($_SESSION['username']) && isset($_SESSION['job']);
+        //session_start();
+        if (isset($_SESSION['username'])) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }
 

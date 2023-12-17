@@ -14,8 +14,8 @@
                 </div>
                 <div class="liens">
                     <ul>
-                        <li><a href="<?php $racine ?>/controleur/monProfil.php">Profile</a></li>
-                        <li><a href="<?php $racine ?>/controleur/deconnexion.php">Deconnexion</a></li>
+                        <li><a href="./?action=profil">Profile</a></li>
+                        <li><a href="./?action=deconnexion">Deconnexion</a></li>
                     </ul>
                 </div>
             </div>
