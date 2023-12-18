@@ -10,4 +10,5 @@ $clients = $Client->getAllClients();
 include "../vue/entete.html.php";
 include "../vue/vueRechercheClient.php";
 include "../vue/pied.html.php"; 
+
 ?>

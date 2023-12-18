@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Hôte : 127.0.0.1:3306
--- Généré le : jeu. 14 déc. 2023 à 17:14
--- Version du serveur : 5.7.40
--- Version de PHP : 8.0.26
+-- Hôte : 127.0.0.1
+-- Généré le : lun. 18 déc. 2023 à 13:59
+-- Version du serveur : 10.4.32-MariaDB
+-- Version de PHP : 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données : `cashcash2`
+-- Base de données : `cashcash`
 --
 
 -- --------------------------------------------------------
@@ -27,15 +27,13 @@ SET time_zone = "+00:00";
 -- Structure de la table `agence`
 --
 
-DROP TABLE IF EXISTS `agence`;
-CREATE TABLE IF NOT EXISTS `agence` (
+CREATE TABLE `agence` (
   `agence_num` int(11) NOT NULL,
   `agence_adresse` varchar(255) DEFAULT NULL,
   `agence_nom` varchar(255) DEFAULT NULL,
   `agence_telephone` varchar(50) DEFAULT NULL,
-  `agence_mail` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`agence_num`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  `agence_mail` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Déchargement des données de la table `agence`
@@ -53,11 +51,9 @@ INSERT INTO `agence` (`agence_num`, `agence_adresse`, `agence_nom`, `agence_tele
 -- Structure de la table `assistant`
 --
 
-DROP TABLE IF EXISTS `assistant`;
-CREATE TABLE IF NOT EXISTS `assistant` (
-  `employe_num_matricule` int(11) NOT NULL,
-  PRIMARY KEY (`employe_num_matricule`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+CREATE TABLE `assistant` (
+  `employe_num_matricule` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Déchargement des données de la table `assistant`
@@ -75,8 +71,7 @@ INSERT INTO `assistant` (`employe_num_matricule`) VALUES
 -- Structure de la table `client`
 --
 
-DROP TABLE IF EXISTS `client`;
-CREATE TABLE IF NOT EXISTS `client` (
+CREATE TABLE `client` (
   `client_num` int(11) NOT NULL,
   `client_raison_sociale` varchar(255) DEFAULT NULL,
   `client_num_SIREN` int(11) DEFAULT NULL,
@@ -85,10 +80,8 @@ CREATE TABLE IF NOT EXISTS `client` (
   `client_téléphone` int(11) DEFAULT NULL,
   `client_num_télécopie` int(11) DEFAULT NULL,
   `client_email` varchar(255) DEFAULT NULL,
-  `agence_num` int(11) NOT NULL,
-  PRIMARY KEY (`client_num`),
-  KEY `agence_num` (`agence_num`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  `agence_num` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Déchargement des données de la table `client`
@@ -109,18 +102,14 @@ INSERT INTO `client` (`client_num`, `client_raison_sociale`, `client_num_SIREN`,
 -- Structure de la table `contratmaintenance`
 --
 
-DROP TABLE IF EXISTS `contratmaintenance`;
-CREATE TABLE IF NOT EXISTS `contratmaintenance` (
+CREATE TABLE `contratmaintenance` (
   `contrat_num` int(11) NOT NULL,
   `contrat_date_signature` datetime DEFAULT NULL,
   `contrat_date_echeance` datetime DEFAULT NULL,
   `contrat_date_renouvellement` datetime DEFAULT NULL,
   `RefTypeContrat` int(11) NOT NULL,
-  `client_num` int(11) NOT NULL,
-  PRIMARY KEY (`contrat_num`),
-  UNIQUE KEY `client_num` (`client_num`),
-  KEY `RefTypeContrat` (`RefTypeContrat`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  `client_num` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Déchargement des données de la table `contratmaintenance`
@@ -139,15 +128,13 @@ INSERT INTO `contratmaintenance` (`contrat_num`, `contrat_date_signature`, `cont
 -- Structure de la table `employe`
 --
 
-DROP TABLE IF EXISTS `employe`;
-CREATE TABLE IF NOT EXISTS `employe` (
+CREATE TABLE `employe` (
   `employe_num_matricule` int(11) NOT NULL,
   `employe_nom` varchar(255) DEFAULT NULL,
   `employe_prenom` varchar(255) DEFAULT NULL,
   `employe_adresse` varchar(255) DEFAULT NULL,
-  `employe_date_embauche` datetime DEFAULT NULL,
-  PRIMARY KEY (`employe_num_matricule`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  `employe_date_embauche` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Déchargement des données de la table `employe`
@@ -171,17 +158,13 @@ INSERT INTO `employe` (`employe_num_matricule`, `employe_nom`, `employe_prenom`,
 -- Structure de la table `intervention`
 --
 
-DROP TABLE IF EXISTS `intervention`;
-CREATE TABLE IF NOT EXISTS `intervention` (
+CREATE TABLE `intervention` (
   `intervention_id` int(11) NOT NULL,
   `intervention_date` date DEFAULT NULL,
   `intervention_heure` time DEFAULT NULL,
   `client_num` int(11) NOT NULL,
-  `employe_num_matricule` int(11) NOT NULL,
-  PRIMARY KEY (`intervention_id`),
-  KEY `client_num` (`client_num`),
-  KEY `employe_num_matricule` (`employe_num_matricule`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  `employe_num_matricule` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Déchargement des données de la table `intervention`
@@ -200,15 +183,12 @@ INSERT INTO `intervention` (`intervention_id`, `intervention_date`, `interventio
 -- Structure de la table `interventionmateriel`
 --
 
-DROP TABLE IF EXISTS `interventionmateriel`;
-CREATE TABLE IF NOT EXISTS `interventionmateriel` (
+CREATE TABLE `interventionmateriel` (
   `materiel_num_serie` int(11) NOT NULL,
   `intervention_id` int(11) NOT NULL,
   `tempsPasse` time DEFAULT NULL,
-  `commentaire` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`materiel_num_serie`,`intervention_id`),
-  KEY `intervention_id` (`intervention_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  `commentaire` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Déchargement des données de la table `interventionmateriel`
@@ -227,8 +207,7 @@ INSERT INTO `interventionmateriel` (`materiel_num_serie`, `intervention_id`, `te
 -- Structure de la table `materiel`
 --
 
-DROP TABLE IF EXISTS `materiel`;
-CREATE TABLE IF NOT EXISTS `materiel` (
+CREATE TABLE `materiel` (
   `materiel_num_serie` int(11) NOT NULL,
   `materiel_date_vente` datetime DEFAULT NULL,
   `materiel_date_installation` datetime DEFAULT NULL,
@@ -236,23 +215,19 @@ CREATE TABLE IF NOT EXISTS `materiel` (
   `materiel_emplacement` varchar(255) DEFAULT NULL,
   `client_num` int(11) NOT NULL,
   `contrat_num` int(11) DEFAULT NULL,
-  `materiel_type_id` int(11) NOT NULL,
-  PRIMARY KEY (`materiel_num_serie`),
-  KEY `client_num` (`client_num`),
-  KEY `contrat_num` (`contrat_num`),
-  KEY `materiel_type_id` (`materiel_type_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  `materiel_type_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Déchargement des données de la table `materiel`
 --
 
 INSERT INTO `materiel` (`materiel_num_serie`, `materiel_date_vente`, `materiel_date_installation`, `materiel_prix_vente`, `materiel_emplacement`, `client_num`, `contrat_num`, `materiel_type_id`) VALUES
-(1, '2022-01-01 00:00:00', '2022-01-05 00:00:00', '1500.00', 'Bureau A', 1, 1, 1),
-(2, '2022-02-01 00:00:00', '2022-02-05 00:00:00', '500.00', 'Bureau B', 2, 2, 2),
-(3, '2022-03-01 00:00:00', '2022-03-05 00:00:00', '2000.00', 'Bureau C', 3, 3, 3),
-(4, '2022-04-01 00:00:00', '2022-04-05 00:00:00', '1000.00', 'Bureau D', 4, 4, 4),
-(5, '2022-05-01 00:00:00', '2022-05-05 00:00:00', '3000.00', 'Bureau E', 5, 5, 5);
+(1, '2022-01-01 00:00:00', '2022-01-05 00:00:00', 1500.00, 'Bureau A', 1, 1, 1),
+(2, '2022-02-01 00:00:00', '2022-02-05 00:00:00', 500.00, 'Bureau B', 2, 2, 2),
+(3, '2022-03-01 00:00:00', '2022-03-05 00:00:00', 2000.00, 'Bureau C', 3, 3, 3),
+(4, '2022-04-01 00:00:00', '2022-04-05 00:00:00', 1000.00, 'Bureau D', 4, 4, 4),
+(5, '2022-05-01 00:00:00', '2022-05-05 00:00:00', 3000.00, 'Bureau E', 5, 5, 5);
 
 -- --------------------------------------------------------
 
@@ -260,13 +235,11 @@ INSERT INTO `materiel` (`materiel_num_serie`, `materiel_date_vente`, `materiel_d
 -- Structure de la table `materiel_type`
 --
 
-DROP TABLE IF EXISTS `materiel_type`;
-CREATE TABLE IF NOT EXISTS `materiel_type` (
+CREATE TABLE `materiel_type` (
   `materiel_type_id` int(11) NOT NULL,
   `materiel_type_reference` varchar(255) DEFAULT NULL,
-  `materiel_type_libelle` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`materiel_type_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  `materiel_type_libelle` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Déchargement des données de la table `materiel_type`
@@ -275,7 +248,10 @@ CREATE TABLE IF NOT EXISTS `materiel_type` (
 INSERT INTO `materiel_type` (`materiel_type_id`, `materiel_type_reference`, `materiel_type_libelle`) VALUES
 (1, 'REF001', 'Ordinateur portable'),
 (2, 'REF002', 'Imprimante'),
-(3, 'REF003', 'Serveur');
+(3, 'REF003', 'Serveur'),
+(4, 'REF004', 'Casque'),
+(5, 'REF005', 'Sourie'),
+(6, 'REF006', 'Clavier');
 
 -- --------------------------------------------------------
 
@@ -283,17 +259,14 @@ INSERT INTO `materiel_type` (`materiel_type_id`, `materiel_type_reference`, `mat
 -- Structure de la table `technicien`
 --
 
-DROP TABLE IF EXISTS `technicien`;
-CREATE TABLE IF NOT EXISTS `technicien` (
+CREATE TABLE `technicien` (
   `employe_num_matricule` int(11) NOT NULL,
   `technicien_telephone` varchar(50) DEFAULT NULL,
   `technicien_nom_qualification` varchar(255) DEFAULT NULL,
   `technicien_date_obtention_qualification` datetime DEFAULT NULL,
   `technicien_mail` varchar(255) DEFAULT NULL,
-  `agence_num` int(11) NOT NULL,
-  PRIMARY KEY (`employe_num_matricule`),
-  KEY `agence_num` (`agence_num`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  `agence_num` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Déchargement des données de la table `technicien`
@@ -312,13 +285,11 @@ INSERT INTO `technicien` (`employe_num_matricule`, `technicien_telephone`, `tech
 -- Structure de la table `type_contrat`
 --
 
-DROP TABLE IF EXISTS `type_contrat`;
-CREATE TABLE IF NOT EXISTS `type_contrat` (
+CREATE TABLE `type_contrat` (
   `RefTypeContrat` int(11) NOT NULL,
   `DelaiIntervention` date DEFAULT NULL,
-  `TauxApplicable` int(11) DEFAULT NULL,
-  PRIMARY KEY (`RefTypeContrat`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  `TauxApplicable` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Déchargement des données de la table `type_contrat`
@@ -330,6 +301,172 @@ INSERT INTO `type_contrat` (`RefTypeContrat`, `DelaiIntervention`, `TauxApplicab
 (3, '2023-03-01', 20),
 (4, '2023-04-01', 25),
 (5, '2023-05-01', 30);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `utilisateur`
+--
+
+CREATE TABLE `utilisateur` (
+  `username` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `employe_num_matricule` int(11) NOT NULL,
+  `roleID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Déchargement des données de la table `utilisateur`
+--
+
+INSERT INTO `utilisateur` (`username`, `password`, `employe_num_matricule`, `roleID`) VALUES
+('louis', 'azerty', 1, 1),
+('test', 'test', 2, 2);
+
+--
+-- Index pour les tables déchargées
+--
+
+--
+-- Index pour la table `agence`
+--
+ALTER TABLE `agence`
+  ADD PRIMARY KEY (`agence_num`);
+
+--
+-- Index pour la table `assistant`
+--
+ALTER TABLE `assistant`
+  ADD PRIMARY KEY (`employe_num_matricule`);
+
+--
+-- Index pour la table `client`
+--
+ALTER TABLE `client`
+  ADD PRIMARY KEY (`client_num`),
+  ADD KEY `agence_num` (`agence_num`);
+
+--
+-- Index pour la table `contratmaintenance`
+--
+ALTER TABLE `contratmaintenance`
+  ADD PRIMARY KEY (`contrat_num`),
+  ADD UNIQUE KEY `client_num` (`client_num`),
+  ADD KEY `RefTypeContrat` (`RefTypeContrat`);
+
+--
+-- Index pour la table `employe`
+--
+ALTER TABLE `employe`
+  ADD PRIMARY KEY (`employe_num_matricule`);
+
+--
+-- Index pour la table `intervention`
+--
+ALTER TABLE `intervention`
+  ADD PRIMARY KEY (`intervention_id`),
+  ADD KEY `client_num` (`client_num`),
+  ADD KEY `employe_num_matricule` (`employe_num_matricule`);
+
+--
+-- Index pour la table `interventionmateriel`
+--
+ALTER TABLE `interventionmateriel`
+  ADD PRIMARY KEY (`materiel_num_serie`,`intervention_id`),
+  ADD KEY `intervention_id` (`intervention_id`);
+
+--
+-- Index pour la table `materiel`
+--
+ALTER TABLE `materiel`
+  ADD PRIMARY KEY (`materiel_num_serie`),
+  ADD KEY `client_num` (`client_num`),
+  ADD KEY `contrat_num` (`contrat_num`),
+  ADD KEY `materiel_type_id` (`materiel_type_id`);
+
+--
+-- Index pour la table `materiel_type`
+--
+ALTER TABLE `materiel_type`
+  ADD PRIMARY KEY (`materiel_type_id`);
+
+--
+-- Index pour la table `technicien`
+--
+ALTER TABLE `technicien`
+  ADD PRIMARY KEY (`employe_num_matricule`),
+  ADD KEY `agence_num` (`agence_num`);
+
+--
+-- Index pour la table `type_contrat`
+--
+ALTER TABLE `type_contrat`
+  ADD PRIMARY KEY (`RefTypeContrat`);
+
+--
+-- Index pour la table `utilisateur`
+--
+ALTER TABLE `utilisateur`
+  ADD PRIMARY KEY (`username`),
+  ADD KEY `employe_num_matricule` (`employe_num_matricule`);
+
+--
+-- Contraintes pour les tables déchargées
+--
+
+--
+-- Contraintes pour la table `assistant`
+--
+ALTER TABLE `assistant`
+  ADD CONSTRAINT `assistant_ibfk_1` FOREIGN KEY (`employe_num_matricule`) REFERENCES `employe` (`employe_num_matricule`);
+
+--
+-- Contraintes pour la table `client`
+--
+ALTER TABLE `client`
+  ADD CONSTRAINT `client_ibfk_1` FOREIGN KEY (`agence_num`) REFERENCES `agence` (`agence_num`);
+
+--
+-- Contraintes pour la table `contratmaintenance`
+--
+ALTER TABLE `contratmaintenance`
+  ADD CONSTRAINT `contratmaintenance_ibfk_1` FOREIGN KEY (`RefTypeContrat`) REFERENCES `type_contrat` (`RefTypeContrat`),
+  ADD CONSTRAINT `contratmaintenance_ibfk_2` FOREIGN KEY (`client_num`) REFERENCES `client` (`client_num`);
+
+--
+-- Contraintes pour la table `intervention`
+--
+ALTER TABLE `intervention`
+  ADD CONSTRAINT `intervention_ibfk_1` FOREIGN KEY (`employe_num_matricule`) REFERENCES `employe` (`employe_num_matricule`),
+  ADD CONSTRAINT `intervention_ibfk_2` FOREIGN KEY (`client_num`) REFERENCES `client` (`client_num`);
+
+--
+-- Contraintes pour la table `interventionmateriel`
+--
+ALTER TABLE `interventionmateriel`
+  ADD CONSTRAINT `interventionmateriel_ibfk_1` FOREIGN KEY (`materiel_num_serie`) REFERENCES `materiel` (`materiel_num_serie`),
+  ADD CONSTRAINT `interventionmateriel_ibfk_2` FOREIGN KEY (`intervention_id`) REFERENCES `intervention` (`intervention_id`);
+
+--
+-- Contraintes pour la table `materiel`
+--
+ALTER TABLE `materiel`
+  ADD CONSTRAINT `materiel_ibfk_1` FOREIGN KEY (`contrat_num`) REFERENCES `contratmaintenance` (`contrat_num`),
+  ADD CONSTRAINT `materiel_ibfk_2` FOREIGN KEY (`client_num`) REFERENCES `client` (`client_num`),
+  ADD CONSTRAINT `materiel_ibfk_3` FOREIGN KEY (`materiel_type_id`) REFERENCES `materiel_type` (`materiel_type_id`);
+
+--
+-- Contraintes pour la table `technicien`
+--
+ALTER TABLE `technicien`
+  ADD CONSTRAINT `technicien_ibfk_1` FOREIGN KEY (`employe_num_matricule`) REFERENCES `employe` (`employe_num_matricule`),
+  ADD CONSTRAINT `technicien_ibfk_2` FOREIGN KEY (`agence_num`) REFERENCES `agence` (`agence_num`);
+
+--
+-- Contraintes pour la table `utilisateur`
+--
+ALTER TABLE `utilisateur`
+  ADD CONSTRAINT `utilisateur_ibfk_1` FOREIGN KEY (`employe_num_matricule`) REFERENCES `employe` (`employe_num_matricule`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

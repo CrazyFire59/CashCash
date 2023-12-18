@@ -21,7 +21,7 @@ class ConnexionModel {
         if ($user) {
             //session_start();
             $_SESSION['username'] = $user['username'];
-            $_SESSION['job'] = $user['employe_num_matricule'];
+            $_SESSION['role'] = $user['roleID'];
             return true;
         } else {
             return false;
@@ -34,14 +34,26 @@ class ConnexionModel {
         session_destroy();
     }
 
-    public function getUsername($userID) {
-        $query = "SELECT username FROM utilisateurs WHERE id = :userID";
+    public function getFullNameFromUsername($username)
+{
+    $query = "SELECT employe_nom, employe_prenom FROM employe
+              INNER JOIN utilisateur ON employe.employe_num_matricule = utilisateur.employe_num_matricule
+              WHERE username = :username";
+    $statement = $this->bdd->connexionPDO()->prepare($query);
+    $statement->bindParam(':username', $username);
+    $statement->execute();
+    $result = $statement->fetch(PDO::FETCH_ASSOC);
+    return $result['employe_nom'] . " " . $result['employe_prenom'];
+} 
+    public function getRole($role) {
+        
+        $query = "SELECT roleID FROM utilisateur WHERE roleID = :roleID";
         $statement = $this->bdd->prepare($query);
-        $statement->bindParam(':userID', $userID);
+        $statement->bindParam(':roleID', $role);
         $statement->execute();
 
         $result = $statement->fetch(PDO::FETCH_ASSOC);
-        return $result['username'];
+        return $result['roleID'];
     }
 
     public function isLoggedOn() {

@@ -15,7 +15,28 @@ class Intervention extends Bdd{
 
         $req->execute();
 
-        $intervention = $req->fetchAll();
+        $interventions = $req->fetchAll();
+
+        return $interventions;
+    }
+
+    function getInterventionById($idIntervention){
+
+        $conn = $this->connexionPDO();
+
+        $req = $conn->prepare(
+            "SELECT * 
+            FROM intervention i         
+            INNER JOIN client c ON i.client_num = c.client_num
+            INNER JOIN employe e ON i.employe_num_matricule = e.employe_num_matricule
+            WHERE i.intervention_id = :idIntervention"
+        );
+
+        $req->bindValue(":idIntervention", $idIntervention, PDO::PARAM_INT);
+
+        $req->execute();
+
+        $intervention = $req->fetch();
 
         return $intervention;
     }

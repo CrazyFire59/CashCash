@@ -12,7 +12,7 @@ include_once "$racine/modele/connexion.inc.php";
         $loginResult = $connexionModel->login($username, $password);
 
         if ($loginResult) {
-            include "$racine/controleur/monProfil.php";
+            header("Location: ./?action=profil");
         } else {
             $titre = "Connexion";
             include "$racine/vue/vueConnexion.php";

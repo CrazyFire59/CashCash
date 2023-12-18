@@ -1,5 +1,5 @@
 <?php 
-include_once "../controleur/ctrInterventions.php"; 
+include_once "../controleur/ctrListeInterventions.php"; 
 ?>
 
 <h1>Interventions</h1>
@@ -42,7 +42,7 @@ include_once "../controleur/ctrInterventions.php";
                         <td><?= $intervention["intervention_id"] ?></td>
                         <td><?= $intervention["intervention_date"] ?></td>
                         <td><?= $intervention["intervention_heure"] ?></td>
-                        <td><a href="">Voir</a></td>
+                        <td><a href="vueIntervention.php?id=<?=$intervention["intervention_id"]?>">Voir</a></td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>
