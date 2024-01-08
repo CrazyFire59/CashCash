@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : lun. 18 déc. 2023 à 13:59
+-- Généré le : lun. 08 jan. 2024 à 18:04
 -- Version du serveur : 10.4.32-MariaDB
 -- Version de PHP : 8.2.12
 
@@ -80,21 +80,22 @@ CREATE TABLE `client` (
   `client_téléphone` int(11) DEFAULT NULL,
   `client_num_télécopie` int(11) DEFAULT NULL,
   `client_email` varchar(255) DEFAULT NULL,
-  `agence_num` int(11) NOT NULL
+  `agence_num` int(11) NOT NULL,
+  `nbkm_agence_client` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Déchargement des données de la table `client`
 --
 
-INSERT INTO `client` (`client_num`, `client_raison_sociale`, `client_num_SIREN`, `client_code_APE`, `client_adresse`, `client_téléphone`, `client_num_télécopie`, `client_email`, `agence_num`) VALUES
-(1, 'Client A', 123456789, 'APE001', '20 Rue Client', 1234567890, 987654321, 'clientA@example.com', 1),
-(2, 'Client B', 987654321, 'APE002', '30 Avenue Client', 2147483647, 876543219, 'clientB@example.com', 2),
-(3, 'Client C', 456789123, 'APE003', '40 Rue Client', 2147483647, 765432198, 'clientC@example.com', 3),
-(4, 'Client D', 789123456, 'APE004', '50 Avenue Client', 2147483647, 654321987, 'clientD@example.com', 4),
-(5, 'Client E', 123456789, 'APE005', '60 Rue Client', 2147483647, 543219876, 'clientE@example.com', 1),
-(6, 'Client F', 987654321, 'APE006', '70 Avenue Client', 2147483647, 432198765, 'clientF@example.com', 2),
-(7, 'Client G', 456789123, 'APE007', '80 Rue Client', 2147483647, 321987654, 'clientG@example.com', 3);
+INSERT INTO `client` (`client_num`, `client_raison_sociale`, `client_num_SIREN`, `client_code_APE`, `client_adresse`, `client_téléphone`, `client_num_télécopie`, `client_email`, `agence_num`, `nbkm_agence_client`) VALUES
+(1, 'Client A', 123456789, 'APE001', '20 Rue Client', 1234567890, 987654321, 'clientA@example.com', 1, 20),
+(2, 'Client B', 987654321, 'APE002', '30 Avenue Client', 2147483647, 876543219, 'clientB@example.com', 2, 34),
+(3, 'Client C', 456789123, 'APE003', '40 Rue Client', 2147483647, 765432198, 'clientC@example.com', 3, 12),
+(4, 'Client D', 789123456, 'APE004', '50 Avenue Client', 2147483647, 654321987, 'clientD@example.com', 4, 4),
+(5, 'Client E', 123456789, 'APE005', '60 Rue Client', 2147483647, 543219876, 'clientE@example.com', 1, 31),
+(6, 'Client F', 987654321, 'APE006', '70 Avenue Client', 2147483647, 432198765, 'clientF@example.com', 2, 17),
+(7, 'Client G', 456789123, 'APE007', '80 Rue Client', 2147483647, 321987654, 'clientG@example.com', 3, 23);
 
 -- --------------------------------------------------------
 
@@ -141,7 +142,7 @@ CREATE TABLE `employe` (
 --
 
 INSERT INTO `employe` (`employe_num_matricule`, `employe_nom`, `employe_prenom`, `employe_adresse`, `employe_date_embauche`) VALUES
-(1, 'Dupont', 'Jean', '1 Rue Principale', '2022-01-10 00:00:00'),
+(1, 'Bocquet', 'Louis', '1 Rue Principale', '2022-01-10 00:00:00'),
 (2, 'Martin', 'Sophie', '5 Avenue Centrale', '2022-02-15 00:00:00'),
 (3, 'Lefebvre', 'Pierre', '10 Rue Grande', '2022-03-20 00:00:00'),
 (4, 'Durand', 'Marie', '15 Avenue des Champs', '2022-04-25 00:00:00'),
@@ -171,9 +172,9 @@ CREATE TABLE `intervention` (
 --
 
 INSERT INTO `intervention` (`intervention_id`, `intervention_date`, `intervention_heure`, `client_num`, `employe_num_matricule`) VALUES
-(1, '2023-01-20', '08:00:00', 1, 1),
-(2, '2023-02-25', '09:30:00', 2, 2),
-(3, '2023-03-30', '10:00:00', 3, 3),
+(1, '2023-01-20', '08:00:00', 1, 3),
+(2, '2023-02-25', '09:30:00', 2, 4),
+(3, '2023-01-08', '10:00:00', 3, 3),
 (4, '2023-04-05', '11:30:00', 4, 4),
 (5, '2023-05-10', '12:00:00', 5, 5);
 
@@ -256,6 +257,21 @@ INSERT INTO `materiel_type` (`materiel_type_id`, `materiel_type_reference`, `mat
 -- --------------------------------------------------------
 
 --
+-- Doublure de structure pour la vue `outilstat`
+-- (Voir ci-dessous la vue réelle)
+--
+CREATE TABLE `outilstat` (
+`annee` int(4)
+,`mois` int(2)
+,`employe_num_matricule` int(11)
+,`nb_intervention` bigint(21)
+,`nb_km_parcourue` decimal(32,0)
+,`durée_passée_sur_matériel` time
+);
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `technicien`
 --
 
@@ -320,8 +336,21 @@ CREATE TABLE `utilisateur` (
 --
 
 INSERT INTO `utilisateur` (`username`, `password`, `employe_num_matricule`, `roleID`) VALUES
-('louis', 'azerty', 1, 1),
-('test', 'test', 2, 2);
+('louis', 'azerty', 1, 3),
+('test', 'test', 2, 2),
+('test1', 'test', 3, 1),
+('test2', 'test', 4, 2),
+('test3', 'test', 5, 3),
+('test4', 'test', 6, 4);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la vue `outilstat`
+--
+DROP TABLE IF EXISTS `outilstat`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `outilstat`  AS SELECT year(`intervention`.`intervention_date`) AS `annee`, month(`intervention`.`intervention_date`) AS `mois`, `technicien`.`employe_num_matricule` AS `employe_num_matricule`, count(`intervention`.`intervention_id`) AS `nb_intervention`, sum(`client`.`nbkm_agence_client`) AS `nb_km_parcourue`, sec_to_time(sum(time_to_sec(`interventionmateriel`.`tempsPasse`))) AS `durée_passée_sur_matériel` FROM (((`technicien` join `intervention`) join `interventionmateriel`) join `client`) WHERE `technicien`.`employe_num_matricule` = `intervention`.`employe_num_matricule` AND `intervention`.`intervention_id` = `interventionmateriel`.`intervention_id` AND `client`.`client_num` = `intervention`.`client_num` GROUP BY year(`intervention`.`intervention_date`), month(`intervention`.`intervention_date`) ;
 
 --
 -- Index pour les tables déchargées
