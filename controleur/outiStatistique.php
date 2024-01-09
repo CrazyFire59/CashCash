@@ -16,7 +16,19 @@ if ($connexionModel->isLoggedOn()) {
     } 
 
     if($role=="Assistant"){
+        $titre = "Outil statistique";
+        include "$racine/vue/entete.html.php";
+            $stat = $connexionModel->getstat();
+            var_dump($stat);
+            foreach($stat as $s)
+            {
+                echo $s['employe_num_matricule'];
+                echo $s['nb_intervention'];
+                echo $s['nb_km_parcourue'];
+                echo $s['durée_passée_sur_matériel'];
+            }
         include "$racine/vue/vueOutilStatistique.php";
+
         include "$racine/vue/pied.html.php";  
     }else if($role=="Agent"){
         $titre = "Connexion";

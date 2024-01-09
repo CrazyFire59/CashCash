@@ -1,8 +1,8 @@
-<body>    
+  
     <h1>Outil Statistique</h1>
 
     <!-- sellectionner un mois -->
-    <form action="./?action=outilstat" method="post" class="outilstat-form">
+    <form action="./?action=outilStat" method="post" class="outilstat-form">
             <p>
                 <label for="month">mois</label>
                 <input type="month" name="month" id="month">
@@ -12,21 +12,6 @@
             </p>
     </form>
     
-    <p>tabler</p>
+    <p>Tabler</p>
 
     <!-- Affiche les statistique du mois ( nb_intervention_valider / nb_km_parcourue / durée_passée_sur_matériel) -->
-
-    <?php
-
-    ?>
-
-    <table>
-        <tr>
-            <td></td>
-
-
-        </tr>
-    </table>
-
-
-</body>
