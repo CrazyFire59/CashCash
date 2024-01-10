@@ -3,7 +3,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="./css/style.css">
-        <title>Entete</title>
+        <title><?php echo $titre ?></title>
     </head>
     
     <body><!--un menu navigation avec un logo à gauche et un menu à droite avec des liens dont Deconnexion et Mon Profile end-->
