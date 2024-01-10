@@ -91,13 +91,16 @@ input[type="text"], input[type="password"] {
     box-sizing: border-box;
 }
 input[type="submit"] {
-    width: 100%;
+    width: 10%;
     padding: 10px;
     background-color: #0D9DCB;
     color: #fff;
     border: none;
     border-radius: 3px;
     cursor: pointer;
+}
+input[type="submit"].SubmitConnexion {
+    width: 100%;
 }
 input[type="submit"]:hover {
     background-color: #0D9DCB;
@@ -235,4 +238,66 @@ header{
 .liens ul li a:hover{
     background: #4F4F4F;
     transition: .5s;
+}
+/*                                           */
+/*             Outils Statistique            */
+/*                                           */
+.outilstat{
+    margin-top: 2%;
+    font-size: 200%;
+    font-weight: bold;
+    text-align: center;
+    
+}
+.boutonstat{
+    margin: 1%;
+}
+
+.inputstat{
+    margin: 1%;
+    width: 20%;
+    padding: 10px;
+    background-color: #f2f2f2;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    font-size: 16px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #333;
+    outline: none;
+    margin-left: 40%;
+    margin-right: 40%;
+    margin-top: 2%;
+    text-align: center;
+    
+}
+
+table{
+    border-collapse: collapse;
+    width: 80%;
+    font-family: monospace;
+    font-size: 25px;
+    text-align: center;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 2%;
+    border-radius: 5px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+}
+.Statable tr{
+    border-bottom: 1px solid #9F9F9F;
+}
+.Statable th{
+    background-color: #9F9F9F;
+    color: white;
+    text-align: left;
+    padding: 10px;
+    font-size: 20px;
+    letter-spacing: 2px;
+
+}
+.Statable td{
+    background-color: #f2f2f2;
+    color: black;
 }

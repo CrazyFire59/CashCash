@@ -24,6 +24,7 @@ if ($connexionModel->isLoggedOn()) {
         $role = "Inconnu";
     } 
 
+    $titre = "Mon Profil";
     
     // Si l'utilisateur est connecté, inclure les informations de profil
     include "$racine/vue/entete.html.php";

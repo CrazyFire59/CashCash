@@ -21,6 +21,6 @@
                 <input type="password" name="password" id="password">
             </p>
             <p>
-                <input type="submit" value="Se connecter">
+                <input type="submit" value="Se connecter" class="SubmitConnexion">
             </p>
         </form>

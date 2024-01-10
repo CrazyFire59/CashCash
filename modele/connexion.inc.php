@@ -1,6 +1,6 @@
 <?php
 include('Bdd.php');
-$bdd = new Bdd();
+$bddConnexion = new Bdd();
 class ConnexionModel {
     private $bdd;
 
@@ -66,5 +66,5 @@ class ConnexionModel {
     }
 }
 
-$connexionModel = new ConnexionModel($bdd);
+$connexionModel = new ConnexionModel($bddConnexion);
 ?>
