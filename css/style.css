@@ -156,6 +156,7 @@ input[type="submit"]:hover {
     transform: translateY(2px);
 }
 
+/* Fiche Client */
 .recherche {
     margin-left: 20%;
     margin-right: 20%;
@@ -171,7 +172,13 @@ input[type="submit"]:hover {
     display: flex;
     justify-content: space-around;
 
+
 }
+
+.titre {
+    margin-top: 15px;
+}
+
 
 /*      Entete       */
 

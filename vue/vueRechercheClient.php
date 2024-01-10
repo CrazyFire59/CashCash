@@ -14,21 +14,12 @@
                 <form action="../controleur/controleurGestionIntervention.php" method="POST" class="recherche">
                     <div class="sous-conteneur">
                         <div>
-                            <label for="techniciens">Recherche par Clients</label>
-                            <select name="techniciens" id="techniciens">
-                                <?php
-                                foreach ($techniciens as $technicien) {
-                                    
-                                }   
-                                ?>
-                            </select>
-                        </div>
-                        <div>
-                            <label for="date">Recherche par date</label>
-                            <input type="date" name="date" id="date">
+                            <label for="numero">
+                            <input type="text" name="numero" id="numero" placeholder="Recherche...">
+                            </label>
                         </div>
                     </div>
                 </form> 
         </div>
     </body>
-</html>
+C²XX²X²
