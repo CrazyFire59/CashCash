@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : lun. 08 jan. 2024 à 18:04
+-- Généré le : jeu. 11 jan. 2024 à 09:27
 -- Version du serveur : 10.4.32-MariaDB
 -- Version de PHP : 8.2.12
 
@@ -172,11 +172,11 @@ CREATE TABLE `intervention` (
 --
 
 INSERT INTO `intervention` (`intervention_id`, `intervention_date`, `intervention_heure`, `client_num`, `employe_num_matricule`) VALUES
-(1, '2023-01-20', '08:00:00', 1, 3),
-(2, '2023-02-25', '09:30:00', 2, 4),
-(3, '2023-01-08', '10:00:00', 3, 3),
-(4, '2023-04-05', '11:30:00', 4, 4),
-(5, '2023-05-10', '12:00:00', 5, 5);
+(1, '2024-01-20', '08:00:00', 1, 3),
+(2, '2024-01-25', '09:30:00', 2, 4),
+(3, '2024-01-08', '10:00:00', 3, 3),
+(4, '2024-04-05', '11:30:00', 4, 4),
+(5, '2024-05-10', '12:00:00', 5, 5);
 
 -- --------------------------------------------------------
 
@@ -350,7 +350,7 @@ INSERT INTO `utilisateur` (`username`, `password`, `employe_num_matricule`, `rol
 --
 DROP TABLE IF EXISTS `outilstat`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `outilstat`  AS SELECT year(`intervention`.`intervention_date`) AS `annee`, month(`intervention`.`intervention_date`) AS `mois`, `technicien`.`employe_num_matricule` AS `employe_num_matricule`, count(`intervention`.`intervention_id`) AS `nb_intervention`, sum(`client`.`nbkm_agence_client`) AS `nb_km_parcourue`, sec_to_time(sum(time_to_sec(`interventionmateriel`.`tempsPasse`))) AS `durée_passée_sur_matériel` FROM (((`technicien` join `intervention`) join `interventionmateriel`) join `client`) WHERE `technicien`.`employe_num_matricule` = `intervention`.`employe_num_matricule` AND `intervention`.`intervention_id` = `interventionmateriel`.`intervention_id` AND `client`.`client_num` = `intervention`.`client_num` GROUP BY year(`intervention`.`intervention_date`), month(`intervention`.`intervention_date`) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `outilstat`  AS SELECT year(`intervention`.`intervention_date`) AS `annee`, month(`intervention`.`intervention_date`) AS `mois`, `technicien`.`employe_num_matricule` AS `employe_num_matricule`, count(`intervention`.`intervention_id`) AS `nb_intervention`, sum(`client`.`nbkm_agence_client`) AS `nb_km_parcourue`, sec_to_time(sum(time_to_sec(`interventionmateriel`.`tempsPasse`))) AS `durée_passée_sur_matériel` FROM (((`technicien` join `intervention`) join `interventionmateriel`) join `client`) WHERE `technicien`.`employe_num_matricule` = `intervention`.`employe_num_matricule` AND `intervention`.`intervention_id` = `interventionmateriel`.`intervention_id` AND `client`.`client_num` = `intervention`.`client_num` GROUP BY year(`intervention`.`intervention_date`), month(`intervention`.`intervention_date`), `technicien`.`employe_num_matricule` ;
 
 --
 -- Index pour les tables déchargées
