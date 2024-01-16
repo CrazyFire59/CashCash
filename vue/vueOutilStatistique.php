@@ -5,7 +5,8 @@
     <form action="./?action=outilStat" method="post" class="outilstat-form">
             <p>
                 <label for="month"> Choisir le Mois</label>
-                <input type="month" name="month" id="month" value="<?php echo $moisetannee; ?>" class="inputstat">
+                 <input type="month" name="month" id="month" value="<?php echo $moisetannee; ?>"  class="inputstat">
+                 <!-- ou <?= $moisetannee ?> -->
             </p>
             <p>
                 <input type="submit" value="Valider" class="boutonstat">

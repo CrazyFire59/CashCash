@@ -2,7 +2,7 @@
 include_once "../controleur/ctrListeInterventions.php"; 
 ?>
 
-<h1>Interventions</h1>
+<h1>Gestion des Interventions</h1>
 
 <html>
     <head>
@@ -31,9 +31,11 @@ include_once "../controleur/ctrListeInterventions.php";
         <table>
             <thead>
                 <tr>
-                    <th>#</th>
-                    <th>Date</th>
-                    <th>Heure</th>
+                    <th>Numéro Intervention</th>
+                    <th>Date Intervention</th>
+                    <th>Heure Intervention</th>
+                    <th>Technicien</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -42,7 +44,8 @@ include_once "../controleur/ctrListeInterventions.php";
                         <td><?= $intervention["intervention_id"] ?></td>
                         <td><?= $intervention["intervention_date"] ?></td>
                         <td><?= $intervention["intervention_heure"] ?></td>
-                        <td><a href="vueIntervention.php?id=<?=$intervention["intervention_id"]?>">Voir</a></td>
+                        <td><?= $intervention["employe_prenom"] ?> <?= $intervention["employe_nom"] ?></td>
+                        <td><a href="vueIntervention.php?id=<?=$intervention["intervention_id"]?>">Modifier</a></td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>

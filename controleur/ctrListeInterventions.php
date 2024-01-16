@@ -7,8 +7,8 @@ $Intervention = new Intervention();
 
 $interventions = $Intervention->getAllInterventions();
 // var_dump($interventions);
-// echo '<pre>';
-// print_r($interventions);
-// echo '</pre>';
+echo '<pre>';
+print_r($interventions[0]);
+echo '</pre>';
 
 ?>
