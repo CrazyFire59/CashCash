@@ -337,7 +337,7 @@ table{
     color: black;
     background-color: #D9D9D9;
     /* padding 4 en haut et en bas */
-    /* padding 8 à droite et à gauche */
+    /* padding 20 à droite et à gauche */
     padding: 4 20; /* padding: haut-bas doite-gauche */
     border-radius: 20px;
 }

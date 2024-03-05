@@ -5,7 +5,7 @@
     <form action="" method="POST" class="options-recherche">
 
         <div class="technicien">
-            <label for="techniciens">Rechercher par techniciens</label>
+            <label for="techniciens">Rechercher par technicien</label>
             <select name="numTechnicien" id="techniciens">
                 <option value="0">
                     Choisir technicien
