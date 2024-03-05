@@ -1,7 +1,7 @@
 <?php
 
-include_once "../modele/Bdd.php";
-include_once "../modele/Intervention.php";
+require_once "./modele/Bdd.php";
+require_once "./modele/Intervention.php";
 
 $Intervention = new Intervention();
 

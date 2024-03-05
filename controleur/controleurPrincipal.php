@@ -3,7 +3,7 @@
 function controleurPrincipal($action){
     $lesActions = array();
     $lesActions["defaut"] = "connexion.php";
-    $lesActions["liste"] = "ctrIntervention.php";
+    $lesActions["liste"] = "listeInterventionsAssistant.php";
     $lesActions["connexion"] = "connexion.php";
     $lesActions["deconnexion"] = "deconnexion.php";
     $lesActions["profil"] = "monProfil.php";
