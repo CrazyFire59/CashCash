@@ -1,6 +1,6 @@
 <img class="line2" src="./images/Line 3.png" alt="ligne"> <br>
-
-<!-- 3 gros bouton avant de revenire a la ligne qui renvoie vers les outils -->
-<div class="Outils">
-    <button class="Outils"><a href="#" class="Outils">Consulter Interventions</a></button>
+<br>
+<div class="outil-Profil">
+    <a href="./?action=modifiermotdepasse"><button>Modifier Mot de Passe</button></a>
+    <a href="#"><button>Consulter Interventions</button></a>
 </div>

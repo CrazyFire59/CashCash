@@ -12,13 +12,13 @@ class ConnexionModel {
     }
 
     public function login($username, $password) {
-        $query = "SELECT * FROM utilisateur WHERE username = :username AND password = :password";
+        $query = "SELECT * FROM utilisateur WHERE username = :username";
         $statement = $this->bdd->connexionPDO()->prepare($query);
         $statement->bindParam(':username', $username);
-        $statement->bindParam(':password', $password);
         $statement->execute();
         $user = $statement->fetch(PDO::FETCH_ASSOC);
-        if ($user) {
+        
+        if ($user && password_verify($password, $user['password'])) {
             //session_start();
             $_SESSION['username'] = $user['username'];
             $_SESSION['role'] = $user['roleID'];
@@ -26,6 +26,34 @@ class ConnexionModel {
         } else {
             return false;
         }
+    }
+
+    public function modifierPassword($ancienPassword, $nouveauPassword) {
+        if (!$this->isLoggedOn()) {
+            return false; 
+        }
+    
+        $username = $_SESSION['username'];
+    
+        $query = "SELECT * FROM utilisateur WHERE username = :username";
+        $statement = $this->bdd->connexionPDO()->prepare($query);
+        $statement->bindParam(':username', $username);
+        $statement->execute();
+        $user = $statement->fetch(PDO::FETCH_ASSOC);
+    
+        if (!password_verify($ancienPassword, $user['password'])) {
+            return false;
+        }
+    
+        $hashedPassword = password_hash($nouveauPassword, PASSWORD_DEFAULT);
+    
+        $query = "UPDATE utilisateur SET password = :password WHERE username = :username";
+        $statement = $this->bdd->connexionPDO()->prepare($query);
+        $statement->bindParam(':password', $hashedPassword);
+        $statement->bindParam(':username', $username);
+        $success = $statement->execute();
+    
+        return $success;
     }
 
     public function logout() {

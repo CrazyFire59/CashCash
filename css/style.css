@@ -25,52 +25,33 @@ h1 {
     padding: 10px;
 }
 
-button .Outils {
-    background-color: #f2f2f2;
-    border: none;
-    border-radius: 10%;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    padding: 10px;
-    font-weight: bold;
-    text-align: center;
-    text-decoration: none;
-    color: black;
-    transition: all 0.3s ease-in-out;
-    width: 100%;
-    height: 60%;
-    margin-left: 2%;
-    margin-right: 2%;
-
-}
-a .Outils {
-    text-decoration: none;
-    color: black;
-    font-weight: bold;
-    font-size: 100%;
-    text-align: center;
-    margin-left: 10%;
-    margin-right: 10%;
-}
-.Outils {
+.outil-Profil {
     display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-    width: 70%;
-    height: 30%;
-    margin-right : 15%;
-    margin-left: 15%;
-    margin-top: 30px;
-    margin-bottom: 30px;
-    background-color: #f2f2f2;
-    border-radius: 10px;
-    padding: 10px;
-    font-weight: bold;
+    flex-direction: column;
+  }
+  
+  .outil-Profil a button {
+    width: 80%;
+    padding: 10px 10px;
+    margin-bottom: 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #4CAF50;
+    color: white;
+    transition: background-color 0.3s;
     text-align: center;
     text-decoration: none;
-    color: black;
-    transition: all 0.3s ease-in-out;
-}
+  }
+  
+  .outil-Profil button:hover {
+    background-color: #45a049;
+  }
+  
+  .outil-Profil button:active {
+    background-color: #3e8e41;
+  }
 
 .connexion-form {
     margin-left: 30%;
@@ -82,7 +63,7 @@ a .Outils {
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
-input[type="text"], input[type="password"] {
+input[type="text"], input[type="password"], input[type="email"] {
     width: 100%;
     padding: 10px;
     margin-bottom: 20px;
@@ -300,4 +281,248 @@ table{
 .Statable td{
     background-color: #f2f2f2;
     color: black;
+}
+
+/*                                           */
+/*             ASSISTANT                     */
+/*                                           */
+
+/* LISTE INTERVENTIONS */
+
+/* tableau */
+
+#vue-listeinterventions-assistant tr{
+    border-bottom: 1px solid #9F9F9F;
+}
+
+#vue-listeinterventions-assistant th{
+    background-color: #9F9F9F;
+    color: white;
+    text-align: left;
+    padding: 10px;
+    font-size: 20px;
+    letter-spacing: 2px;
+}
+
+#vue-listeinterventions-assistant td{
+    background-color: #f2f2f2;
+    color: black;
+}
+
+#vue-listeinterventions-assistant tr td{
+    /* ajout d'un padding de 20 à droite et à gauche sinon les cases 
+    sont collées aux bords et n'ont pas assez d'espace (enleve pour voir) */
+    padding: 0 20; /* padding: haut-bas doite-gauche */
+}
+
+#vue-listeinterventions-assistant table a{
+    text-decoration: none;
+    color: black;
+    background-color: #D9D9D9;
+    /* padding 4 en haut et en bas */
+    /* padding 20 à droite et à gauche */
+    padding: 4 20; /* padding: haut-bas doite-gauche */
+    border-radius: 20px;
+}
+
+/* je centre le dernier th (Action) 
+(supprimer pour voir quand c'est à gauche) */
+#vue-listeinterventions-assistant th:last-child{
+    text-align: center;
+}
+
+/* titre */
+
+#vue-listeinterventions-assistant h1{
+    margin-top: 2%;
+    font-size: 200%;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* options de recherche (par technicien ou par date) */
+
+#vue-listeinterventions-assistant .options-recherche{
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 48px;
+    font-size: 20px;
+}
+
+/* select liste des techniciens */
+#vue-listeinterventions-assistant .options-recherche .technicien select{
+    /* padding 3 en haut et en bas */
+    /* padding 5 à droite et à gauche */
+    padding: 3 5; /* padding: haut-bas doite-gauche */
+    font-size: 18;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+#vue-listeinterventions-assistant .options-recherche .date input{
+    padding: 3 5; 
+    font-size: 18;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+/* EDIT INTERVENTION */
+
+/* titre */ 
+
+#vue-editintervention-assistant h1{
+    margin-top: 2%;
+    font-size: 200%;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* tableau */
+
+#vue-editintervention-assistant tr{
+    border-bottom: 1px solid #9F9F9F;
+}
+
+#vue-editintervention-assistant th{
+    background-color: #9F9F9F;
+    color: white;
+    text-align: left;
+    padding: 10px;
+    font-size: 20px;
+    letter-spacing: 2px;
+}
+
+#vue-editintervention-assistant td{
+    background-color: #f2f2f2;
+    color: black;
+}
+
+#vue-editintervention-assistant tr td{
+    padding: 0 20; 
+}
+
+ #vue-editintervention-assistant td>select{
+    padding: 3 5;
+    font-size: 18;
+}
+
+#vue-editintervention-assistant td>.date{
+    padding: 3 5; 
+    font-size: 18;
+}
+
+#vue-editintervention-assistant td>.time{
+    padding: 3 5; 
+    font-size: 18;
+}
+
+#vue-editintervention-assistant .btn-valider-intervention {
+    margin-top: 30px;
+    width: 15% !important;
+    font-size: 18px; 
+}
+
+/* #vue-editintervention-assistant button[type="submit"] {
+    width: 10%;
+    padding: 10px;
+    background-color: #0D9DCB;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+} */
+
+
+
+
+
+
+
+
+
+
+
+/* The snackbar - position it at the bottom and in the middle of the screen */
+#snackbar {
+    visibility: hidden; /* Hidden by default. Visible on click */
+    min-width: 250px; /* Set a default minimum width */
+    margin-left: -125px; /* Divide value of min-width by 2 */
+    background-color: #333; /* Black background color */
+    color: #fff; /* White text color */
+    text-align: center; /* Centered text */
+    border-radius: 2px; /* Rounded borders */
+    padding: 16px; /* Padding */
+    position: fixed; /* Sit on top of the screen */
+    z-index: 1; /* Add a z-index if needed */
+    left: 50%; /* Center the snackbar */
+    bottom: 30px; /* 30px from the bottom */
+}
+
+/* Show the snackbar when clicking on a button (class added with JavaScript) */
+.show {
+    visibility: visible !important; /* Show the snackbar */
+
+/* Add animation: Take 0.5 seconds to fade in and out the snackbar.
+However, delay the fade out process for 2.5 seconds */
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+/* Animations to fade the snackbar in and out */
+@-webkit-keyframes fadein {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 30px; opacity: 1;}
+}
+
+@keyframes fadein {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 30px; opacity: 1;}
+}
+
+@-webkit-keyframes fadeout {
+    from {bottom: 30px; opacity: 1;}
+    to {bottom: 0; opacity: 0;}
+}
+
+@keyframes fadeout {
+    from {bottom: 30px; opacity: 1;}
+    to {bottom: 0; opacity: 0;}
+}
+#container {
+    text-align: center;
+      padding: 20px;
+      border-radius: 10px;
+}
+
+.submit{
+    padding: 10px 10px;
+    margin-bottom: 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #4CAF50;
+    color: white;
+    transition: background-color 0.3s;
+    text-align: center;
+    text-decoration: none;
+}
+    
+
+.submit:hover {    
+    background-color: #45a049;
+}
+
+.select-inscription {
+  font-size: 1em;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.option-inscription {
+  padding: 10px;
+  text-align: center;
 }
