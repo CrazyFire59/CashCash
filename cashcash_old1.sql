@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : mer. 06 mars 2024 à 15:45
+-- Généré le : mar. 27 fév. 2024 à 15:41
 -- Version du serveur : 10.4.32-MariaDB
 -- Version de PHP : 8.2.12
 
@@ -290,10 +290,10 @@ CREATE TABLE `technicien` (
 
 INSERT INTO `technicien` (`employe_num_matricule`, `technicien_telephone`, `technicien_nom_qualification`, `technicien_date_obtention_qualification`, `technicien_mail`, `agence_num`) VALUES
 (3, '+33123456789', 'Qualification A', '2022-05-01 00:00:00', 'technicienA@example.com', 1),
+(4, '+33456789123', 'Qualification B', '2022-06-01 00:00:00', 'technicienB@example.com', 2),
 (5, '+33567891234', 'Qualification C', '2022-07-01 00:00:00', 'technicienC@example.com', 3),
 (7, '+33678912345', 'Qualification D', '2022-08-01 00:00:00', 'technicienD@example.com', 4),
-(9, '+33789123456', 'Qualification E', '2022-09-01 00:00:00', 'technicienE@example.com', 1),
-(10, '+33456789123', 'Qualification B', '2022-06-01 00:00:00', 'technicienB@example.com', 2);
+(9, '+33789123456', 'Qualification E', '2022-09-01 00:00:00', 'technicienE@example.com', 1);
 
 -- --------------------------------------------------------
 
@@ -336,10 +336,12 @@ CREATE TABLE `utilisateur` (
 --
 
 INSERT INTO `utilisateur` (`username`, `password`, `employe_num_matricule`, `roleID`) VALUES
-('Admin', '$2y$10$Db7nAmM6IwkQmfvMd12i7eWXimCS0lUhPLCzlQ2sXO2ojDui659T2', 4, 4),
-('Agent', '$2y$10$IJbvu7dB2VdbhbSvW.8QjOqrovTlzMfsxtLMBNolvgaojuGxOXpRW', 2, 2),
-('Assistant', '$2y$10$XuEWsZyVp.ozgdrvkoR1l.64HIDBytwO2VYfgBKxPIhS5lXaPXItC', 1, 1),
-('Technicien', '$2y$10$.L02wyHGDIhRASgEsE2uV.ytfg9IXsEehOAy.0ooL4bn.Hr9wEoRi', 3, 3);
+('louis', 'azerty', 1, 3),
+('test', 'test', 2, 2),
+('test1', 'test', 3, 1),
+('test2', 'test', 4, 2),
+('test3', 'test', 5, 3),
+('test4', 'test', 6, 4);
 
 -- --------------------------------------------------------
 
