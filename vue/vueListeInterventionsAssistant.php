@@ -44,7 +44,7 @@
                     <td><?= $intervention["intervention_date"] ?></td>
                     <td><?= $intervention["intervention_heure"] ?></td>
                     <td><?= $intervention["employe_prenom"] ?> <?= $intervention["employe_nom"] ?></td>
-                    <td><a href="vueIntervention.php?id=<?=$intervention["intervention_id"]?>">Editer</a></td>
+                    <td><a href="./?action=editIntervention&interventionId=<?=$intervention["intervention_id"]?>">Editer</a></td>
                 </tr>
             <?php endforeach; ?>
         </tbody>

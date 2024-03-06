@@ -1,57 +1,48 @@
-<?php 
-//include_once "../controleur/ctrIntervention.php"; 
-// pq tu include le controleur ? c'est l'inverse normalement
-?>
- 
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" type="text/css" href="./css/style.css">
-        <title>Modification de l'interventions N 1</title>
+<main id="vue-editintervention-assistant">
 
-        <style>
-            table, td, th {
-                border: 1px solid black;
-            }
+    <h1>Modification de l'intervention n°<?= $intervention["intervention_id"] ?></h1>
 
-            table{
-                border-collapse: collapse;
-            }
-
-            td{
-                padding: 10px;
-            }
-
-            th{
-                padding: 5px;
-            }
-        </style>
-    </head>
-    
-    <body>
-        <h1>Intervention #<?= $intervention["intervention_id"] ?></h1>
-
-        <h2>Informations sur l'intervention</h2>
+    <form action="" method="POST">
 
         <table>
             <thead>
                 <tr>
-                    <th>#</th>
-                    <th>Date</th>
-                    <th>Heure</th>
+                    <th>Numéro Intervention</th>
+                    <th>Date Intervention</th>
+                    <th>Heure Intervention</th>
+                    <th>Heure Intervention</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
                     <td><?= $intervention["intervention_id"] ?></td>
-                    <td><?= $intervention["intervention_date"] ?></td>
-                    <td><?= $intervention["intervention_heure"] ?></td>
+                    <td><input type="date" name="date" value="<?= $date ?>" class="date"></td>
+                    <td><input type="time" name="heure" value="<?= $heure ?>" class="time"></td>
+                    <td>
+                        <select name="numTechnicien" id="techniciens">
+                            <!-- <option value="0">
+                                Aucun technicien
+                            </option> -->
+                            <?php foreach ($techniciensDansMemeAgenceQueClient as $technicien): ?>
+                                <option value="<?= $technicien["employe_num_matricule"]?> <?= $intervention["employe_num_matricule"] == $technicien["employe_num_matricule"] ? "selected" : "" ?>">
+                                    <?= $technicien["employe_prenom"]?> <?= $technicien["employe_nom"]?>
+                                </option>
+                            <?php endforeach;?>
+                        </select>
+                    </td>
                 </tr>
             </tbody>
         </table>
 
-    </body>
+        <input type="submit" value="Modifier l'intervention" class="btn-valider-intervention">
 
+        <!-- snackbar -->
+        <!-- <button type="submit" class="btn-valider-intervention">Modifier l'intervention</button> -->
+        <!-- <button class="btn btn-lg" onclick="myFunction()">Show Snackbar</button> -->
 
+        <!-- The actual snackbar -->
+        <!-- <div id="snackbar">Intervention modifiée</div> -->
+    
+    </form>
 
+</main>
