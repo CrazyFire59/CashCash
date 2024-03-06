@@ -56,9 +56,51 @@ class Intervention extends Bdd{
 
         $req->execute();
 
-        $intervention = $req->fetchAll();
+        $interventions = $req->fetchAll();
 
-        return $intervention;
+        return $interventions;
+    }
+
+    function getInterventionsByDate($date){
+        $conn = $this->connexionPDO();
+
+        $req = $conn->prepare(
+            "SELECT * 
+            FROM intervention i         
+            INNER JOIN client c ON i.client_num = c.client_num
+            INNER JOIN employe e ON i.employe_num_matricule = e.employe_num_matricule
+            WHERE i.intervention_date = :date"
+        );
+
+        $req->bindValue(":date", $date, PDO::PARAM_STR);
+
+        $req->execute();
+
+        $interventions = $req->fetchAll();
+
+        return $interventions;
+    }
+    
+    function getInterventionsByEmployeNumMatriculeAndDate($employeNumMatricule, $date){
+
+        $conn = $this->connexionPDO();
+
+        $req = $conn->prepare(
+            "SELECT * 
+            FROM intervention i         
+            INNER JOIN client c ON i.client_num = c.client_num
+            INNER JOIN employe e ON i.employe_num_matricule = e.employe_num_matricule
+            WHERE i.employe_num_matricule = :employeNumMatricule AND i.intervention_date = :date"
+        );
+
+        $req->bindValue(":employeNumMatricule", $employeNumMatricule, PDO::PARAM_INT);
+        $req->bindValue(":date", $date, PDO::PARAM_STR);
+        
+        $req->execute();
+        
+        $interventions = $req->fetchAll();
+        
+        return $interventions;
     }
 
 }

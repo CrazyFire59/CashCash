@@ -11,7 +11,7 @@
                     Choisir technicien
                 </option>
                 <?php foreach ($techniciens as $technicien): ?>
-                    <option value="<?= $technicien["employe_num_matricule"]?>">
+                    <option value="<?= $technicien["employe_num_matricule"]?>" <?= $numTechnicienRecherche == $technicien["employe_num_matricule"] ? 'selected' : '' ?>>
                         <?= $technicien["employe_prenom"]?> <?= $technicien["employe_nom"]?>
                     </option>
                 <?php endforeach;?>
@@ -20,7 +20,7 @@
 
         <div class="date">
             <label for="date">Rechercher par date</label>
-            <input type="date" name="date" id="date">
+            <input type="date" name="date" id="date" value=<?= $dateRecherche ?>>
         </div>
 
         <input type="submit" value="Rechercher">
