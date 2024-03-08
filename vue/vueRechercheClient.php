@@ -7,11 +7,11 @@
         <link rel="stylesheet" href="../css/style.css">
     </head>
     <body>
-        <div id="titre">
+        <div class="titre">
             <h3>Fichier Client</h3>
         </div>
         <div id="conteneur">
-                <form action="../controleur/controleurGestionIntervention.php" method="POST" class="recherche">
+                <form action="../controleur/" method="POST" class="recherche">
                     <div class="sous-conteneur">
                         <div>
                             <label for="numero">
@@ -21,5 +21,21 @@
                     </div>
                 </form> 
         </div>
+        <table class="Statable">
+            <tr class="Statable">
+                <th class="Statable">Numéro Client</th>
+                <th class="Statable">Visualiser</th>
+                <th class="Statable">Modifier</th>
+            </tr>
+            <?php
+            // affiche le numero des clients
+            foreach ($clients as $unClient) {
+                //afficher une table ou afficher les informations du client (Numéro, bouton Editer, bouton Modifier)
+                echo '<tr class="Statable"><td class"Statable">' . $unClient['client_num'] . '</td><td class="Statable">' . '<input type="submit" value="Visualiser" class="boutonstat"></td><td class="Statable">' . '<input type="submit" value="Modifier" class="boutonstat"></td></tr>';
+
+            }
+
+            
+            ?>
+        </table>
     </body>
-C²XX²X²

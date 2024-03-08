@@ -1,14 +1,16 @@
 <?php
-
-include_once "../modele/Bdd.php";
-include_once "../modele/Clients.php";
+if ($_SERVER["SCRIPT_FILENAME"] == __FILE__) {
+    $racine = "..";
+}
+include_once "$racine/modele/Bdd.php";
+include_once "$racine/modele/Clients.php";
 
 $client = new Client();
 
 $clients = $client->getAllClients();
 
-include "../vue/entete.html.php";
-include "../vue/vueRechercheClient.php";
-include "../vue/pied.html.php"; 
+include "$racine/vue/entete.html.php";
+include "$racine/vue/vueRechercheClient.php";
+include "$racine/vue/pied.html.php"; 
 
 ?>

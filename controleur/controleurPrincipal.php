@@ -8,7 +8,7 @@ function controleurPrincipal($action){
     $lesActions["connexion"] = "connexion.php";
     $lesActions["deconnexion"] = "deconnexion.php";
     $lesActions["profil"] = "monProfil.php";
-    $lesActions["listeClient"] = "listeClient.php";
+    $lesActions["RechercheClient"] = "RechercheClient.php";
     $lesActions["outilStat"] = "outiStatistique.php";
     $lesActions["inscription"] = "inscription.php";
     $lesActions["modifiermotdepasse"] = "modifierMotDePasse.php";
