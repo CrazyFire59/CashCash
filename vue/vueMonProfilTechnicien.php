@@ -3,5 +3,4 @@
 <div class="outil-Profil">
     <a href="./?action=modifiermotdepasse"><button>Modifier Mot de Passe</button></a>
     <a href="#"><button>Consulter Interventions</button></a>
-    <a href="#"><button>Valider Interventions</button></a>
 </div>
