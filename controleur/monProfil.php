@@ -20,6 +20,8 @@ if ($connexionModel->isLoggedOn()) {
         $role = "Agent";
     }else if($_SESSION["role"]==3){
         $role = "Technicien";
+    }else if($_SESSION["role"]==4){
+        $role = "Admin";
     }else{
         $role = "Inconnu";
     } 
@@ -28,13 +30,15 @@ if ($connexionModel->isLoggedOn()) {
     
     // Si l'utilisateur est connecté, inclure les informations de profil
     include "$racine/vue/entete.html.php";
-    echo "<h1 class='profil'>Bonjour ", $role ," " , $connexionModel->getFullNameFromUsername($_SESSION["username"]) , "</h1>";
+    echo "<h1 class='profil'>Bonjour ", $role ," " , $connexionModel->getFullNameFromUsername($_SESSION["username"]) , "</h1><br>";
     if($role=="Assistant"){
         include "$racine/vue/vueMonProfilAssistant.php";
     }else if($role=="Agent"){
         include "$racine/vue/vueMonProfilAgent.php";
     }else if($role=="Technicien"){
         include "$racine/vue/vueMonProfilTechnicien.php";
+    }else if($role=="Admin"){
+        include "$racine/vue/vueMonProfilAdmin.php";
     }else{
         include "$racine/vue/vueMonProfil.php";
     }

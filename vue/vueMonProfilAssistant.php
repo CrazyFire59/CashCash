@@ -1,9 +1,9 @@
         <img class="line2" src="./images/Line 3.png" alt="ligne"> <br>
-
-        <!-- 3 gros bouton avant de revenire a la ligne qui renvoie vers les outils -->
-        <div class="Outils">
-            <button class="Outils"><a href="./?action=liste" class="Outils">Consulter Interventions</a></button>
-            <button class="Outils"><a href="#" class="Outils">Fichier Client</a></button>
-            <button class="Outils"><a href="#" class="Outils">Affectation Visite</a></button>
-            <button class="Outils"><a href="./?action=outilStat" class="Outils">Outil Statistiques</a></button>
+        <br>
+        <div class="outil-Profil">
+        <a href="./?action=modifiermotdepasse"><button>Modifier Mot de Passe</button></a>
+            <a href="./?action=listeInterventionsAssistant"><button>Consulter Interventions</button></a>
+            <a href="./?action=RechercheClient"><button>Fichier Client</button></a>
+            <a href="./?action=affecterVisite"><button>Affectation Visite</button></a>
+            <a href="./?action=outilStat"><button>Outil Statistiques</button></a>
         </div>

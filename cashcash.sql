@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : lun. 08 jan. 2024 à 18:04
+-- Généré le : mer. 06 mars 2024 à 15:45
 -- Version du serveur : 10.4.32-MariaDB
 -- Version de PHP : 8.2.12
 
@@ -172,11 +172,11 @@ CREATE TABLE `intervention` (
 --
 
 INSERT INTO `intervention` (`intervention_id`, `intervention_date`, `intervention_heure`, `client_num`, `employe_num_matricule`) VALUES
-(1, '2023-01-20', '08:00:00', 1, 3),
-(2, '2023-02-25', '09:30:00', 2, 4),
-(3, '2023-01-08', '10:00:00', 3, 3),
-(4, '2023-04-05', '11:30:00', 4, 4),
-(5, '2023-05-10', '12:00:00', 5, 5);
+(1, '2024-01-20', '08:00:00', 1, 3),
+(2, '2024-01-25', '09:30:00', 2, 4),
+(3, '2024-01-08', '10:00:00', 3, 3),
+(4, '2024-04-05', '11:30:00', 4, 4),
+(5, '2024-05-10', '12:00:00', 5, 5);
 
 -- --------------------------------------------------------
 
@@ -290,10 +290,10 @@ CREATE TABLE `technicien` (
 
 INSERT INTO `technicien` (`employe_num_matricule`, `technicien_telephone`, `technicien_nom_qualification`, `technicien_date_obtention_qualification`, `technicien_mail`, `agence_num`) VALUES
 (3, '+33123456789', 'Qualification A', '2022-05-01 00:00:00', 'technicienA@example.com', 1),
-(4, '+33456789123', 'Qualification B', '2022-06-01 00:00:00', 'technicienB@example.com', 2),
 (5, '+33567891234', 'Qualification C', '2022-07-01 00:00:00', 'technicienC@example.com', 3),
 (7, '+33678912345', 'Qualification D', '2022-08-01 00:00:00', 'technicienD@example.com', 4),
-(9, '+33789123456', 'Qualification E', '2022-09-01 00:00:00', 'technicienE@example.com', 1);
+(9, '+33789123456', 'Qualification E', '2022-09-01 00:00:00', 'technicienE@example.com', 1),
+(10, '+33456789123', 'Qualification B', '2022-06-01 00:00:00', 'technicienB@example.com', 2);
 
 -- --------------------------------------------------------
 
@@ -336,12 +336,10 @@ CREATE TABLE `utilisateur` (
 --
 
 INSERT INTO `utilisateur` (`username`, `password`, `employe_num_matricule`, `roleID`) VALUES
-('louis', 'azerty', 1, 3),
-('test', 'test', 2, 2),
-('test1', 'test', 3, 1),
-('test2', 'test', 4, 2),
-('test3', 'test', 5, 3),
-('test4', 'test', 6, 4);
+('Admin', '$2y$10$Db7nAmM6IwkQmfvMd12i7eWXimCS0lUhPLCzlQ2sXO2ojDui659T2', 4, 4),
+('Agent', '$2y$10$IJbvu7dB2VdbhbSvW.8QjOqrovTlzMfsxtLMBNolvgaojuGxOXpRW', 2, 2),
+('Assistant', '$2y$10$XuEWsZyVp.ozgdrvkoR1l.64HIDBytwO2VYfgBKxPIhS5lXaPXItC', 1, 1),
+('Technicien', '$2y$10$.L02wyHGDIhRASgEsE2uV.ytfg9IXsEehOAy.0ooL4bn.Hr9wEoRi', 3, 3);
 
 -- --------------------------------------------------------
 
@@ -350,7 +348,7 @@ INSERT INTO `utilisateur` (`username`, `password`, `employe_num_matricule`, `rol
 --
 DROP TABLE IF EXISTS `outilstat`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `outilstat`  AS SELECT year(`intervention`.`intervention_date`) AS `annee`, month(`intervention`.`intervention_date`) AS `mois`, `technicien`.`employe_num_matricule` AS `employe_num_matricule`, count(`intervention`.`intervention_id`) AS `nb_intervention`, sum(`client`.`nbkm_agence_client`) AS `nb_km_parcourue`, sec_to_time(sum(time_to_sec(`interventionmateriel`.`tempsPasse`))) AS `durée_passée_sur_matériel` FROM (((`technicien` join `intervention`) join `interventionmateriel`) join `client`) WHERE `technicien`.`employe_num_matricule` = `intervention`.`employe_num_matricule` AND `intervention`.`intervention_id` = `interventionmateriel`.`intervention_id` AND `client`.`client_num` = `intervention`.`client_num` GROUP BY year(`intervention`.`intervention_date`), month(`intervention`.`intervention_date`) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `outilstat`  AS SELECT year(`intervention`.`intervention_date`) AS `annee`, month(`intervention`.`intervention_date`) AS `mois`, `technicien`.`employe_num_matricule` AS `employe_num_matricule`, count(`intervention`.`intervention_id`) AS `nb_intervention`, sum(`client`.`nbkm_agence_client`) AS `nb_km_parcourue`, sec_to_time(sum(time_to_sec(`interventionmateriel`.`tempsPasse`))) AS `durée_passée_sur_matériel` FROM (((`technicien` join `intervention`) join `interventionmateriel`) join `client`) WHERE `technicien`.`employe_num_matricule` = `intervention`.`employe_num_matricule` AND `intervention`.`intervention_id` = `interventionmateriel`.`intervention_id` AND `client`.`client_num` = `intervention`.`client_num` GROUP BY year(`intervention`.`intervention_date`), month(`intervention`.`intervention_date`), `technicien`.`employe_num_matricule` ;
 
 --
 -- Index pour les tables déchargées

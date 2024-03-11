@@ -1,7 +1,8 @@
 <?php 
-include_once "../controleur/ctrIntervention.php"; 
+//include_once "../controleur/ctrIntervention.php"; 
+// pq tu include le controleur ? c'est l'inverse normalement
 ?>
-
+ 
 <html>
     <head>
         <meta charset="utf-8">
