@@ -6,6 +6,7 @@ include_once "$racine/modele/Bdd.php";
 include_once "$racine/modele/AffecterVisite.php";
 
 if (isset($_SESSION["role"]) == 1){
+    $titre = "Affecter Visite";
     include "$racine/vue/entete.html.php";
     include "$racine/vue/vueAffecterVisite.php";
     if (isset($_POST['intervention_date']) && isset($_POST['intervention_heure']) && isset($_POST['client_num']) && isset($_POST['employe_num_matricule'])) {

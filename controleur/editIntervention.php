@@ -4,6 +4,7 @@ require_once "./modele/Bdd.php";
 require_once "./modele/Intervention.php";
 include_once "./modele/Technicien.php";
 
+$titre = "Modifier Intervention";
 include "./vue/entete.html.php";
 
 $Intervention = new Intervention();

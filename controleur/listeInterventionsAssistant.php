@@ -10,6 +10,9 @@ include_once "$racine/modele/Technicien.php";
 
 // include_once "./modele/Bdd.php";
 // include_once "./modele/Intervention.php";
+
+$titre = "Intervention Assistant";
+
 include "$racine/vue/entete.html.php";
 
 

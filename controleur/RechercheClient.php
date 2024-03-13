@@ -9,6 +9,8 @@ $client = new Client();
 
 $clients = $client->getAllClients();
 
+$titre = "Fichier Client";
+
 include "$racine/vue/entete.html.php";
 include "$racine/vue/vueRechercheClient.php";
 include "$racine/vue/pied.html.php"; 
