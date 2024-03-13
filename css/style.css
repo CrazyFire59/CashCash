@@ -433,7 +433,62 @@ table{
 } */
 
 
+/*                                           */
+/*             TECHNICIEN                    */
+/*                                           */
 
+/* LISTE INTERVENTIONS */
+
+/* tableau */
+
+#vue-listeinterventions-technicien tr{
+    border-bottom: 1px solid #9F9F9F;
+}
+
+#vue-listeinterventions-technicien th{
+    background-color: #9F9F9F;
+    color: white;
+    text-align: left;
+    padding: 10px;
+    font-size: 20px;
+    letter-spacing: 2px;
+}
+
+#vue-listeinterventions-technicien td{
+    background-color: #f2f2f2;
+    color: black;
+}
+
+#vue-listeinterventions-technicien tr td{
+    /* ajout d'un padding de 20 à droite et à gauche sinon les cases 
+    sont collées aux bords et n'ont pas assez d'espace (enleve pour voir) */
+    padding: 0 20; /* padding: haut-bas doite-gauche */
+}
+
+#vue-listeinterventions-technicien table a{
+    text-decoration: none;
+    color: black;
+    background-color: #D9D9D9;
+    /* padding 4 en haut et en bas */
+    /* padding 20 à droite et à gauche */
+    padding: 4 20; /* padding: haut-bas doite-gauche */
+    border-radius: 20px;
+}
+
+/* je centre le dernier th (Action) 
+(supprimer pour voir quand c'est à gauche) */
+#vue-listeinterventions-technicien th:last-child{
+    text-align: center;
+}
+
+/* titre */
+
+#vue-listeinterventions-technicien h1{
+    margin-top: 2%;
+    font-size: 200%;
+    font-weight: bold;
+    text-align: center;
+}
 
 
 
