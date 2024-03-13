@@ -4,6 +4,7 @@ function controleurPrincipal($action){
     $lesActions = array();
     $lesActions["defaut"] = "connexion.php";
     $lesActions["listeInterventionsAssistant"] = "listeInterventionsAssistant.php";
+    $lesActions["listeInterventionsTechnicien"] = "listeInterventionsTechnicien.php";
     $lesActions["editIntervention"] = "editIntervention.php";
     $lesActions["connexion"] = "connexion.php";
     $lesActions["deconnexion"] = "deconnexion.php";

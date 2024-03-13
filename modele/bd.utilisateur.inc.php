@@ -10,6 +10,12 @@ function login($username, $password) {
         $query->execute();
         $result = $query->fetch(PDO::FETCH_ASSOC);
 
+        // Requête pour récupérer le numéro de l'utilisateur connexté
+        $queryToGetNum = $bdd->prepare('SELECT employe_num_matricule FROM utilisateur WHERE username = :username');
+        $queryToGetNum->bindParam(':username', $username);
+        $queryToGetNum->execute();
+        $NumOfLoggedUser = $query->fetch(PDO::FETCH_ASSOC);
+
         if ($result) {
             $hashedPassword = $result['password'];
 
@@ -18,6 +24,12 @@ function login($username, $password) {
                 // L'utilisateur est authentifié avec succès
                 $_SESSION['loggedin'] = true;
                 $_SESSION['username'] = $username;
+
+
+                $_SESSION['userNum'] = $NumOfLoggedUser;
+
+                //quand on fait var_dump($_SESSION); il n'y a que $_SESSION['username'] et $_SESSION['role']
+
                 return true;
             } else {
                 // Mot de passe incorrect
