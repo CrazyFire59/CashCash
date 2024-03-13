@@ -5,15 +5,17 @@ if ($_SERVER["SCRIPT_FILENAME"] == __FILE__) {
 include_once "$racine/modele/Bdd.php";
 include_once "$racine/modele/Clients.php";
 
-$client = new Client();
 
-$clients = $client->getAllClients();
+$clients = $clientmodel->getAllClients();
 
 if (isset($_POST['recherche'])) {
     $recherche = $_POST['recherche'];
-    $clients = $client->rechercheClient($recherche);
+    $clients = $clientmodel->rechercheClient($recherche);
 }
-
+//on a pas acces au site ?
+// si moi
+// lance filezilla 
+//j'ai fait connexion
 $titre = "Fichier Client";
 
 include "$racine/vue/entete.html.php";

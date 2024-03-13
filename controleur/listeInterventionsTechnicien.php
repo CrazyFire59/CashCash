@@ -19,13 +19,12 @@ $Intervention = new Intervention();
 $interventionsTechnicien = $Intervention->getTechnicienInterventions(3);
 
 //var_dump($_SESSION);
-echo '<pre>';
 // print_r($interventionsTechnicien);
-echo 'materiel_num_serie ----------';
-print_r($interventionsTechnicien[0]["materiel_num_serie"]);
-echo 'tempsPasse ----------';
-print_r($interventionsTechnicien[0]["tempsPasse"]);
-echo '</pre>';
+// echo 'materiel_num_serie ----------';
+// print_r($interventionsTechnicien[0]["materiel_num_serie"]);
+// echo 'tempsPasse ----------';
+// print_r($interventionsTechnicien[0]["tempsPasse"]);
+// echo '</pre>';
 
 
 include "$racine/vue/vueListeInterventionsTechnicien.php";

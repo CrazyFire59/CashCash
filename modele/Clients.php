@@ -1,18 +1,28 @@
 <?php
-    class Client extends Bdd {
+
+$bddClient = new Bdd();
+class Client{
+
+    private $bdd;
+
+    public function __construct($bddInstance) {
+        $this->bdd = $bddInstance;
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+    }
+
     function getAllClients(){
-        $db = $this->connexionPDO();
         $requete = "SELECT * FROM client";
-        $statment = $db->prepare($requete);
+        $statment = $this->bdd->connexionPDO()->prepare($requete);
         $statment->execute();
         $clients = $statment->fetchAll();
         return $clients;
         }
 
     function rechercheClient($id){
-        $db = $this->connexionPDO();
         $requete = "SELECT * FROM client WHERE client_num = :id";
-        $statment = $db->prepare($requete);
+        $statment = $this->bdd->connexionPDO()->prepare($requete);
         $statment->bindParam(':id', $id);
         $statment->execute();
         $client = $statment->fetchAll();
@@ -20,14 +30,14 @@
     } // recherche un client par son id
 
     //visualiser les informations d'un client
-    function visualiserClient($id){
-        $db = $this->connexionPDO();
+    function AffichageClient($id){
         $requete = "SELECT * FROM client WHERE client_num = :id";
-        $statment = $db->prepare($requete);
+        $statment = $this->bdd->connexionPDO()->prepare($requete);
         $statment->bindParam(':id', $id);
         $statment->execute();
-        $client = $statment->fetch();
-        return $clientVisuelle;
+        $client = $statment->fetchAll();
+        return $client;
     } 
-    }
+}
+$clientmodel = new Client ($bddClient);
 ?>

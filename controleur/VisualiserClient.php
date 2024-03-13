@@ -7,8 +7,11 @@ include_once "$racine/modele/Clients.php";
 
 $IdClient = $_GET['clientnum'];
 
+$client = $clientmodel->AffichageClient($IdClient);
+
+
 $titre = "Visualisation Client";
 
 include "$racine/vue/entete.html.php";
 include "$racine/vue/vueVisualiserClient.php";
-include "$racine/vue/pied.html.php"; //salut
+include "$racine/vue/pied.html.php";
