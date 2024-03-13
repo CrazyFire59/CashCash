@@ -1,21 +1,14 @@
 
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Gestion Assistant</title>
-        <link rel="stylesheet" href="../css/style.css">
-    </head>
-    <body>
         <div class="titre">
             <h3>Fichier Client</h3>
         </div>
         <div id="conteneur">
-                <form action="../controleur/" method="POST" class="recherche">
+                <form action="" method="POST" class="recherche">
                     <div class="sous-conteneur">
                         <div>
                             <label for="numero">
-                            <input type="text" name="numero" id="numero" placeholder="Recherche...">
+                            <input type="text" name="recherche" id="recherche" placeholder="Recherche...">
+                            <input type="submit" class="submit" value="Valider"></input>
                             </label>
                         </div>
                     </div>
@@ -29,13 +22,14 @@
             </tr>
             <?php
             // affiche le numero des clients
-            foreach ($clients as $unClient) {
-                //afficher une table ou afficher les informations du client (Numéro, bouton Editer, bouton Modifier)
-                echo '<tr class="Statable"><td class"Statable">' . $unClient['client_num'] . '</td><td class="Statable">' . '<input type="submit" value="Visualiser" class="boutonstat"></td><td class="Statable">' . '<input type="submit" value="Modifier" class="boutonstat"></td></tr>';
-
-            }
+            foreach ($clients as $unClient) { ?>
+                <?php //afficher une table ou afficher les informations du client (Numéro, bouton Editer, bouton Modifier)
+                 echo '<tr class="Statable"><td class"Statable">' . $unClient['client_num'] . '</td>'; ?>
+                <td class="Statable"><a class="submit" href="./?action=visualiserclient&clientnum=<?=$unClient["client_num"]?>">Visualiser</a></td>
+                <td class="Statable"><button type="submit" value="Modifier" class="submit">Modifier</button></td></tr>
+                
+            <?php }
 
             
             ?>
         </table>
-    </body>

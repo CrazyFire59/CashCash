@@ -9,6 +9,11 @@ $client = new Client();
 
 $clients = $client->getAllClients();
 
+if (isset($_POST['recherche'])) {
+    $recherche = $_POST['recherche'];
+    $clients = $client->rechercheClient($recherche);
+}
+
 $titre = "Fichier Client";
 
 include "$racine/vue/entete.html.php";

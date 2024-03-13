@@ -1,11 +1,14 @@
 <?php
+if ($_SERVER["SCRIPT_FILENAME"] == __FILE__) {
+    $racine = "..";
+}
 
-require_once "./modele/Bdd.php";
-require_once "./modele/Intervention.php";
-include_once "./modele/Technicien.php";
+require_once "$racine/modele/Bdd.php";
+require_once "$racine/modele/Intervention.php";
+include_once "$racine/modele/Technicien.php";
 
 $titre = "Valider Intervention";
-include "./vue/entete.html.php";
+include "$racine/vue/entete.html.php";
 
 $Intervention = new Intervention();
 
@@ -36,8 +39,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 }
 
-include "./vue/vueValiderIntervention.php";
+include "$racine/vue/vueValiderIntervention.php";
 
-include "./vue/pied.html.php";
+include "$racine/vue/pied.html.php";
 
 ?>
