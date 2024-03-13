@@ -1,4 +1,4 @@
-<main id="vue-listeinterventions-technicien">
+<main id="vue-listeinterventions-assistant">
     
     <h1>Vos Interventions</h1>
 
@@ -13,12 +13,14 @@
         </thead>
         <tbody>
             <?php foreach ($interventionsTechnicien as $intervention): ?>
-                <tr>
-                    <td>N°<?= $intervention["intervention_id"] ?></td>
-                    <td><?= $intervention["intervention_date"] ?></td>
-                    <td><?= $intervention["intervention_heure"] ?></td>
-                    <td><a href="./?action=validerintervention&interventionId=<?=$intervention["intervention_id"]?>">Valider</a></td>
-                </tr>
+                <?php if ($intervention["tempsPasse"] == null && $intervention["commentaire"] == null): ?>
+                    <tr>
+                        <td>N°<?= $intervention["intervention_id"] ?></td>
+                        <td><?= $intervention["intervention_date"] ?></td>
+                        <td><?= $intervention["intervention_heure"] ?></td>
+                        <td><a href="./?action=validerintervention&interventionId=<?=$intervention["intervention_id"]?>">Valider</a></td>
+                    </tr>
+                <?php endif; ?>
             <?php endforeach; ?>
         </tbody>
     </table>
