@@ -14,6 +14,7 @@ function controleurPrincipal($action){
     $lesActions["inscription"] = "inscription.php";
     $lesActions["modifiermotdepasse"] = "modifierMotDePasse.php";
     $lesActions["affecterVisite"] = "affecterVisite.php";
+    $lesActions["validerintervention"] = "validerIntervention.php";
     
     if (array_key_exists ( $action , $lesActions )){
         return $lesActions[$action];

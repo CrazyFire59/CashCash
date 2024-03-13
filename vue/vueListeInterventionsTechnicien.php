@@ -17,7 +17,7 @@
                     <td>N°<?= $intervention["intervention_id"] ?></td>
                     <td><?= $intervention["intervention_date"] ?></td>
                     <td><?= $intervention["intervention_heure"] ?></td>
-                    <td><a href="./?action=editIntervention&interventionId=<?=$intervention["intervention_id"]?>">Valider</a></td>
+                    <td><a href="./?action=validerintervention&interventionId=<?=$intervention["intervention_id"]?>">Valider</a></td>
                 </tr>
             <?php endforeach; ?>
         </tbody>
