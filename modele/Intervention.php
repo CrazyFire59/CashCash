@@ -71,6 +71,7 @@ class Intervention extends Bdd{
             FROM intervention i         
             INNER JOIN client c ON i.client_num = c.client_num
             INNER JOIN employe e ON i.employe_num_matricule = e.employe_num_matricule
+            INNER JOIN interventionmateriel im ON im.intervention_id = i.intervention_id
             WHERE i.employe_num_matricule = :numTech"
         );
 
