@@ -16,6 +16,7 @@ function controleurPrincipal($action){
     $lesActions["affecterVisite"] = "AffecterVisite.php";
     $lesActions["validerintervention"] = "validerIntervention.php";
     $lesActions["visualiserclient"] = "VisualiserClient.php";
+    $lesActions["modifierClient"] = "modifierClient.php";
     
     if (array_key_exists ( $action , $lesActions )){
         return $lesActions[$action];

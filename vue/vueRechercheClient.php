@@ -26,7 +26,7 @@
                 <?php //afficher une table ou afficher les informations du client (Numéro, bouton Editer, bouton Modifier)
                  echo '<tr class="Statable"><td class"Statable">' . $unClient['client_num'] . '</td>'; ?>
                 <td class="Statable"><a class="submit" href="./?action=visualiserclient&clientnum=<?=$unClient["client_num"]?>">Visualiser</a></td>
-                <td class="Statable"><button type="submit" value="Modifier" class="submit">Modifier</button></td></tr>
+                <td class="Statable"><a class="submit" href="./?action=modifierClient&clientnum=<?=$unClient["client_num"]?>">Modifier</button></td></tr>
                 
             <?php }
 

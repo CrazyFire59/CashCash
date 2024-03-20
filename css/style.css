@@ -72,7 +72,6 @@ input[type="text"], input[type="password"], input[type="email"] {
     box-sizing: border-box;
 }
 input[type="submit"] {
-    width: 10%;
     padding: 10px;
     background-color: #0D9DCB;
     color: #fff;
@@ -580,4 +579,18 @@ However, delay the fade out process for 2.5 seconds */
 .option-inscription {
   padding: 10px;
   text-align: center;
+}
+
+.TableFiche {
+    font-size: 13px;
+}
+
+tr .TableFiche {
+    font-size: 15px;
+    background-color: #0D9DCB;
+}
+
+td {
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
