@@ -1,5 +1,8 @@
 <?php
 
+namespace cashcash;
+use PDO;
+
 class Intervention extends Bdd{
 
     function getAllInterventions(){
@@ -150,6 +153,10 @@ class Intervention extends Bdd{
         $req->bindValue(":employeNumMatricule", $employeNumMatricule, PDO::PARAM_INT);
 
         $req->execute();
+    }
+
+    function interventiontest(){
+        return "abc";
     }
     
 

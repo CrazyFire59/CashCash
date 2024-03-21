@@ -1,6 +1,6 @@
 <?php
 
-class Intervention extends Bdd{
+class Materiel extends Bdd{
 
     function getlInterventionsMateriels(){
 

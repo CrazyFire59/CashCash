@@ -1,6 +1,11 @@
 <?php
+namespace cashcash;
+use PDO;
+
 include('Bdd.php');
+
 $bddConnexion = new Bdd();
+
 class ConnexionModel {
     private $bdd;
 
