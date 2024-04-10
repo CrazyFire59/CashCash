@@ -1,8 +1,5 @@
 <?php
 
-namespace cashcash;
-use PDO;
-
 class Technicien extends Bdd{
 
     function getAllTechniciens(){
