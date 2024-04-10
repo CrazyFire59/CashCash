@@ -14,30 +14,18 @@ $Intervention = new Intervention();
 
 $idIntervention = $_GET['interventionId'];
 
-$intervention = $Intervention->getInterventionById($idIntervention);
-// var_dump($interventions);
-// echo '<pre>';
-// print_r($intervention);
-// echo '</pre>';
+$materiels = $Intervention->getAllMaterielFromIntervention($idIntervention);
 
-$date = $intervention["intervention_date"];
-$heure = $intervention["intervention_heure"];
-
-$Technicien = new Technicien();
-$techniciens = $Technicien->getAllTechniciens();
-
-$techniciensDansMemeAgenceQueClient = $Technicien->getAllTechniciensInSameAgencyAsClient($intervention["agence_num"]);
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
-    $date = $_POST["date"];
-    $heure = $_POST["heure"];
-    $numTechnicien = $_POST["numTechnicien"];
-
-    $Intervention->editIntervention($idIntervention, $date, $heure, $numTechnicien);
-
-
+if(isset($_POST['valider'])){
+    foreach($materiels as $materiel){
+        $commentaire = $_POST['' . $materiel["materiel_num_serie"]  . "commentaire" . ''];
+        $tempsPasse = $_POST['' . $materiel["materiel_num_serie"]  . "temps" . ''];
+        $numMateriel = $_POST['' . $materiel["materiel_num_serie"] . ''];
+        $Intervention->ValiderIntervention($numMateriel, $idIntervention, $tempsPasse, $commentaire);
+    }
+     header("Location: ./?action=listeInterventionsTechnicien");
 }
+
 
 include "$racine/vue/vueValiderIntervention.php";
 

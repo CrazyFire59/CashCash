@@ -73,7 +73,6 @@ class Technicien extends Bdd{
 
         return $intervention;
     }*/
-
 }
 
     

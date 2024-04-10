@@ -5,32 +5,16 @@ if ($_SERVER["SCRIPT_FILENAME"] == __FILE__) {
 // Include the main TCPDF library (search for installation path).
 require_once("$racine/library/TCPDF/tcpdf.php");
 include_once "$racine/modele/Bdd.php";
-$bddPDF = new Bdd();
-
 
 // extend TCPF with custom functions
 class MYPDF extends TCPDF {
 
-    private $bdd;
-
-    public function __construct($bddInstance) {
-        $this->bdd = $bddInstance;
-        if (session_status() == PHP_SESSION_NONE) {
-            session_start();
-        }
-    }
-
-    // Load table data from file
+    
     public function LoadData($id_inter) {
         // Données du tableau
-        $query = "SELECT * FROM intervention i, interventionmateriel im, materiel m, materiel_type mt WHERE i.intervention_id = im.intervention_id AND im.materiel_num_serie = m.materiel_num_serie AND m.materiel_type_id = mt.materiel_type_id AND  i.intervention_id = :id_inter;";
-        $statement = $this->bdd->connexionPDO()->prepare($query);
-        $statement->bindParam(':id_inter', $id_inter);
-        $statement->execute();
-        $result = $statement->fetchAll(PDO::FETCH_ASSOC);       
-    
-        return $result;
-
+        include_once("./modele/GenererPDF.php");
+        $query = $ModelePDF->GenererPDF($id_inter);
+        return $query;
     }
 
     // public function LoadData2($id_inter) {
@@ -180,13 +164,13 @@ class MYPDF extends TCPDF {
     // Client table
     public function ClientTable($header,$data) {
         // Colors, line width and bold font
-        $this->SetFillColor(0, 0, 0);
+        $this->SetFillColor(0, 200, 200);
         $this->SetTextColor(255);
         $this->SetDrawColor(0, 0, 0);
         $this->SetLineWidth(0.3);
         $this->SetFont('', 'B');
         // Header
-        $w = array(60, 65, 65);
+        $w = array(20, 40, 30, 50, 20,30);
         $num_headers = count($header);
         for($i = 0; $i < $num_headers; ++$i) {
             $this->Cell($w[$i], 7, $header[$i], 1, 0, 'C', 1);
@@ -199,10 +183,13 @@ class MYPDF extends TCPDF {
         // Data
         $fill = 0;
         foreach($data as $row) {
-            $this->Cell($w[0], 6, $row["materiel_type_id"], 'LR', 0, 'L', $fill);
-            $this->Cell($w[1], 6, $row["materiel_type_reference"], 'LR', 0, 'L', $fill);
-            $this->Cell($w[2], 6, $row["materiel_type_libelle"], 'LR', 0, 'L', $fill);
-            
+            $this->Cell($w[0], 6, $row["client_num"], 'LR', 0, 'L', $fill);
+            $this->Cell($w[1], 6, $row["client_adresse"], 'LR', 0, 'L', $fill);
+            $this->Cell($w[2], 6, $row["client_téléphone"], 'LR', 0, 'L', $fill);
+            $this->Cell($w[3], 6, $row["client_email"], 'LR', 0, 'L', $fill);
+            $this->Cell($w[4], 6, $row["agence_num"], 'LR', 0, 'L', $fill);
+            $this->Cell($w[5], 6, $row["nbkm_agence_client"], 'LR', 0, 'L', $fill);
+
             $this->Ln();
             $fill=!$fill;
         }
@@ -262,6 +249,7 @@ $pdf->writeHTML($html, true, false, true, false, '');
 
 $header = array('ID Intervention', 'Date', 'Heure', 'Numero Client', 'Matricule Employe');
 $data = $pdf->LoadData($idIntervention);
+
 $pdf->InterventionTable($header, $data);
 
 // Interventions Materiels
@@ -295,7 +283,15 @@ $html = "<br><br><br><h3>Techniciens :</h3>";
 $pdf->writeHTML($html, true, false, true, false, '');
 
 $header = array('Matricule', 'Telephone', 'Mail', 'Qualification');
-$pdf->TechnicienTable($header, $data2);
+$pdf->TechnicienTable($header, $data);
+
+// Client
+
+$html = "<br><br><br><h3>Client :</h3>";
+$pdf->writeHTML($html, true, false, true, false, '');
+
+$header = array('Numero', 'Adresse', 'Telephone', 'Email', 'Agence', 'Nb Km');
+$pdf->ClientTable($header, $data);
 
 // ---------------------------------------------------------
 

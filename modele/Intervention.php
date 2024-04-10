@@ -151,6 +151,39 @@ class Intervention extends Bdd{
 
         $req->execute();
     }
+
+    function getAllMaterielFromIntervention($numIntervention){
+
+        $conn = $this->connexionPDO();
+        $req = $conn->prepare(
+            "SELECT * 
+            FROM interventionmateriel im, materiel m, materiel_type mt
+            WHERE m.materiel_num_serie = im.materiel_num_serie
+            AND m.materiel_type_id = mt.materiel_type_id
+            AND im.intervention_id = :numIntervention"
+        );
+        $req->bindValue(":numIntervention", $numIntervention, PDO::PARAM_INT);
+        $req->execute();
+        $materiels = $req->fetchAll();
+        return $materiels;
+        
+    }
+
+    function ValiderIntervention($numMateriel, $numIntervention, $tempsPasse, $commentaire){
+
+        $conn = $this->connexionPDO();
+        $req = $conn->prepare(
+            "UPDATE interventionmateriel 
+            SET tempsPasse = :tempsPasse, commentaire = :commentaire
+            WHERE materiel_num_serie = :numMateriel AND intervention_id = :numIntervention"
+        );
+
+        $req->bindValue(":tempsPasse", $tempsPasse, PDO::PARAM_STR);
+        $req->bindValue(":commentaire", $commentaire, PDO::PARAM_STR);
+        $req->bindValue(":numMateriel", $numMateriel, PDO::PARAM_INT);
+        $req->bindValue(":numIntervention", $numIntervention, PDO::PARAM_INT);
+        $req->execute();
+    }
     
 
 }

@@ -26,7 +26,7 @@ if(isset($_SESSION["role"])){
 }
 
 if ($role == "Assistant"){
-    echo '<pre>';
+    // echo '<pre>';
 
     $titre = "Intervention Assistant";
 
