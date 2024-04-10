@@ -1,1 +1,1 @@
-{"version":1,"defects":{"MathTest::testDouble":4,"InterventionTest::testIntervention":3,"InterventionTest::testGetInterventionById":3},"times":{"MathTest::testDouble":0,"InterventionTest::testIntervention":0.002,"InterventionTest::testGetInterventionById":0.116}}
+{"version":1,"defects":{"MathTest::testDouble":4,"InterventionTest::testIntervention":4},"times":{"MathTest::testDouble":0,"InterventionTest::testIntervention":0.002}}
