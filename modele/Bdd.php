@@ -1,10 +1,4 @@
 <?php
-
-namespace cashcash;
-
-use PDO;
-use PDOException;
-
 class Bdd {
     private $_dbName = "CashCash";
     private $_dbUser = "CashCash";

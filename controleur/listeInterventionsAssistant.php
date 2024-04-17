@@ -1,7 +1,5 @@
 <?php
 
-namespace cashcash;
-
 if ($_SERVER["SCRIPT_FILENAME"] == __FILE__) {
     $racine = "..";
 }
@@ -28,7 +26,7 @@ if(isset($_SESSION["role"])){
 }
 
 if ($role == "Assistant"){
-    echo '<pre>';
+    // echo '<pre>';
 
     $titre = "Intervention Assistant";
 

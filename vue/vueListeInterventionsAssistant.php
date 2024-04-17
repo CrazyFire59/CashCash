@@ -35,6 +35,7 @@
                 <th>Heure Intervention</th>
                 <th>Technicien</th>
                 <th>Action</th>
+                <th>PDF</th>
             </tr>
         </thead>
         <tbody>
@@ -45,6 +46,7 @@
                     <td><?= $intervention["intervention_heure"] ?></td>
                     <td><?= $intervention["employe_prenom"] ?> <?= $intervention["employe_nom"] ?></td>
                     <td><a href="./?action=editIntervention&interventionId=<?=$intervention["intervention_id"]?>">Editer</a></td>
+                    <td><a target="_blank" href="./?action=genererPDF&interventionId=<?=$intervention["intervention_id"]?>">PDF</a></td>
             <?php endforeach; ?>
         </tbody>
     </table>

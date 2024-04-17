@@ -17,6 +17,7 @@ function controleurPrincipal($action){
     $lesActions["validerintervention"] = "validerIntervention.php";
     $lesActions["visualiserclient"] = "VisualiserClient.php";
     $lesActions["modifierClient"] = "modifierClient.php";
+    $lesActions["genererPDF"] = "genererPDF.php";
     
     if (array_key_exists ( $action , $lesActions )){
         return $lesActions[$action];

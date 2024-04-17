@@ -1,8 +1,5 @@
 <?php
 
-namespace cashcash;
-use PDO;
-
 class Technicien extends Bdd{
 
     function getAllTechniciens(){
@@ -76,7 +73,6 @@ class Technicien extends Bdd{
 
         return $intervention;
     }*/
-
 }
 
     
