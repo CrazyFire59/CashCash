@@ -39,12 +39,10 @@ class Client {
         return $client;
     } 
 
-    function ModifierClient($IdClient, $raison_sociale, $SIREN, $codeAPE, $adresse, $telecopie, $telephone, $email, $agence, $nbkm) {
+    function ModifierClient($IdClient, $adresse, $telecopie, $telephone, $email, $agence, $nbkm) {
         // requete pour modifier un client
         $requete = "UPDATE client 
-        SET client_raison_sociale = :raison_sociale, 
-        client_num_SIREN = :SIREN, 
-        client_code_APE = :codeAPE, 
+        SET 
         client_adresse = :adresse, 
         client_num_télécopie = :telecopie, 
         client_téléphone = :telephone, 
@@ -56,9 +54,6 @@ class Client {
 
         $statment = $this->bdd->connexionPDO()->prepare($requete);
         $statment->bindParam(':IdClient', $IdClient);
-        $statment->bindParam(':raison_sociale', $raison_sociale);
-        $statment->bindParam(':SIREN', $SIREN);
-        $statment->bindParam(':codeAPE', $codeAPE);
         $statment->bindParam(':adresse', $adresse);
         $statment->bindParam(':telecopie', $telecopie);
         $statment->bindParam(':telephone', $telephone);
@@ -67,6 +62,16 @@ class Client {
         $statment->bindParam(':nbkm', $nbkm);
 
         $statment->execute(); 
+    }
+
+    function GetMaterielsClient($idClient){
+        $requete = "SELECT * FROM materiel WHERE client_num = :idClient";
+        $statment = $this->bdd->connexionPDO()->prepare($requete);
+        $statment->bindParam(':idClient', $idClient);
+        $statment->execute();
+        $materiels = $statment->fetchAll();
+        return $materiels;
+
     }
 }
 $clientmodel = new Client ($bddClient);
