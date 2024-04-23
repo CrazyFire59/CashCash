@@ -1,23 +1,24 @@
 <?php
 
-class Intervention extends Bdd{
+class Materiel extends Bdd{
 
-    function getlInterventionsMateriels(){
+    function getInterventionMateriels($interventionId){
 
         $conn = $this->connexionPDO();
 
         $req = $conn->prepare(
-            "SELECT * 
-            FROM materiel m
-            INNER JOIN materiel_type mt ON i.client_num = c.client_num
-            INNER JOIN employe e ON i.employe_num_matricule = e.employe_num_matricule"
+            "SELECT * FROM interventionmateriel im
+            INNER JOIN intervention i ON i.intervention_id = im.intervention_id
+            INNER JOIN materiel m ON m.materiel_num_serie = im.materiel_num_serie
+            INNER JOIN materiel_type mt ON mt.materiel_type_id = m.materiel_type_id
+            WHERE i.intervention_id = $interventionId"
         );
 
         $req->execute();
 
-        $interventions = $req->fetchAll();
+        $materiels = $req->fetchAll();
 
-        return $interventions;
+        return $materiels;
     }
 
 }

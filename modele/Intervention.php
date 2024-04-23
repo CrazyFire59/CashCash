@@ -29,6 +29,9 @@ class Intervention extends Bdd{
             FROM intervention i         
             INNER JOIN client c ON i.client_num = c.client_num
             INNER JOIN employe e ON i.employe_num_matricule = e.employe_num_matricule
+            INNER JOIN interventionmateriel im ON im.intervention_id = i.intervention_id 
+            INNER JOIN materiel m ON m.materiel_num_serie = im.materiel_num_serie 
+            INNER JOIN materiel_type mt ON mt.materiel_type_id = m.materiel_type_id 
             WHERE i.intervention_id = :idIntervention"
         );
 
@@ -135,7 +138,11 @@ class Intervention extends Bdd{
 
         $req = $conn->prepare(
             "UPDATE intervention 
-            SET intervention_date = :date, intervention_heure = :heure, employe_num_matricule = :employeNumMatricule 
+            SET 
+            intervention_date = :date, 
+            intervention_heure = :heure,
+            employe_num_matricule = :employeNumMatricule 
+            
             WHERE intervention_id = :idIntervention"
         );
         // $req = $conn->prepare(
