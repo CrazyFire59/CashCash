@@ -254,7 +254,7 @@ $pdf->InterventionTable($header, $data);
 
 // Interventions Materiels
 
-$html = "<br><br><br><h3>Materiels :</h3>";
+$html = "<br><br><br><h3>InterventionMateriels :</h3>";
 $pdf->writeHTML($html, true, false, true, false, '');
 
 $header = array('ID Materiel', 'ID Intervention', 'Temps passe', 'Commentaire');

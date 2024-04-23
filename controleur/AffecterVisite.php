@@ -13,6 +13,7 @@ if (isset($_SESSION["role"]) == 1){
         if ($AffecterVisite->getAffecterVisite($_POST['intervention_date'], $_POST['intervention_heure'], $_POST['client_num'], $_POST['employe_num_matricule'])) {
             echo "Visite affecté avec succées !";
             echo '<br><a target="_blank" href="./?action=genererPDF">Generer PDF</a>';
+            header("Location: ./?action=selectionMateriel&client_num=" . $_POST['client_num'] . "&intervention_date=" . $_POST['intervention_date'] . "&intervention_heure=" . $_POST['intervention_heure']. "&employe_num_matricule=" . $_POST['employe_num_matricule']);
     }   else {
             echo "Visite non affecté !";
     }
