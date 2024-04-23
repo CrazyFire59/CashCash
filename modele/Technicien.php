@@ -17,6 +17,26 @@ class Technicien extends Bdd{
 
         return $techniciens;
     }
+
+    function getTechnicienByNumTech($numTech){
+
+        $conn = $this->connexionPDO();
+
+        $req = $conn->prepare(
+        "SELECT * FROM technicien t
+        INNER JOIN employe e ON t.employe_num_matricule = e.employe_num_matricule
+        WHERE t.employe_num_matricule = :numTech"
+        );
+
+        $req->bindValue(":numTech", $numTech, PDO::PARAM_INT);
+
+        $req->execute();
+
+        $technicien = $req->fetch();
+
+        return $technicien;
+    }
+
     function getAllTechniciensInSameAgencyAsClient($numAgenceOfClient){
 
         $conn = $this->connexionPDO();

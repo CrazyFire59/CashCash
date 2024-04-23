@@ -39,15 +39,29 @@
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($interventions as $intervention): ?>
+            <?php if (count($interventions) !== 0): ?>
+                <?php foreach ($interventions as $intervention): ?>
+                    <tr>
+                        <td>N°<?= $intervention["intervention_id"] ?></td>
+                        <td><?= $intervention["intervention_date"] ?></td>
+                        <td><?= $intervention["intervention_heure"] ?></td>
+                        <td><?= $intervention["employe_prenom"] ?> <?= $intervention["employe_nom"] ?></td>
+                        <td><a href="./?action=editIntervention&interventionId=<?=$intervention["intervention_id"]?>">Editer</a></td>
+                        <td><a target="_blank" href="./?action=genererPDF&interventionId=<?=$intervention["intervention_id"]?>">PDF</a></td>
+                <?php endforeach; ?>
+            <?php else: ?>
                 <tr>
-                    <td>N°<?= $intervention["intervention_id"] ?></td>
-                    <td><?= $intervention["intervention_date"] ?></td>
-                    <td><?= $intervention["intervention_heure"] ?></td>
-                    <td><?= $intervention["employe_prenom"] ?> <?= $intervention["employe_nom"] ?></td>
-                    <td><a href="./?action=editIntervention&interventionId=<?=$intervention["intervention_id"]?>">Editer</a></td>
-                    <td><a target="_blank" href="./?action=genererPDF&interventionId=<?=$intervention["intervention_id"]?>">PDF</a></td>
-            <?php endforeach; ?>
+                    <td colspan="6">
+                        <?php if ($numTechnicienRecherche != 0 && !empty($dateRecherche)): ?>
+                            Pas d'interventions pour le technicien <?= $Technicien->getTechnicienByNumTech($numTechnicienRecherche)["employe_prenom"].' '.$Technicien->getTechnicienByNumTech($numTechnicienRecherche)["employe_nom"] ?> le <?= $dateRecherche ?>
+                        <?php elseif ($numTechnicienRecherche != 0): ?>
+                            Pas d'interventions pour le technicien <?= $Technicien->getTechnicienByNumTech($numTechnicienRecherche)["employe_prenom"].' '.$Technicien->getTechnicienByNumTech($numTechnicienRecherche)["employe_nom"] ?>
+                        <?php elseif (!empty($dateRecherche)): ?>
+                            Pas d'interventions le <?= $dateRecherche ?>
+                        <?php endif; ?>
+                    </td>
+                </tr>
+            <?php endif; ?>  
         </tbody>
     </table>
 
