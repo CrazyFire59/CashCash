@@ -145,14 +145,6 @@ class Intervention extends Bdd{
             
             WHERE intervention_id = :idIntervention"
         );
-        // $req = $conn->prepare(
-        //     "UPDATE intervention 
-        //     SET intervention_date = '2024-01-20', intervention_heure = '08:00:12', employe_num_matricule = 3 
-        //     WHERE intervention_id = 1"
-        // );
-        //UPDATE intervention 
-        //SET intervention_date = '2024-01-20', intervention_heure = '08:00:11', employe_num_matricule = 3 
-        //WHERE intervention_id = 1;
 
         $req->bindValue(":idIntervention", $idIntervention, PDO::PARAM_INT);    
         $req->bindValue(":date", $date, PDO::PARAM_STR);
@@ -161,6 +153,22 @@ class Intervention extends Bdd{
 
         $req->execute();
     }
+
+    // function editMaterielIntervention($idIntervention, $materielTypeId) {
+    //     $conn = $this->connexionPDO();
+        
+    //     $req = $conn->prepare(
+    //         "UPDATE materiel m
+    //         INNER JOIN interventionmateriel im ON m.materiel_num_serie = im.materiel_num_serie 
+    //         SET m.materiel_type_id = :materielTypeId
+    //         WHERE im.materiel_num_serie = :idIntervention"
+    //     );
+    
+    //     $req->bindValue(":idIntervention", $idIntervention, PDO::PARAM_INT);    
+    //     $req->bindValue(":materielTypeId", $materielTypeId, PDO::PARAM_INT);
+    //     $req->execute();
+    // }
+    
 
     function getAllMaterielFromIntervention($numIntervention){
 

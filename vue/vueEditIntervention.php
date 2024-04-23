@@ -17,8 +17,8 @@
             <tbody>
                 <tr>
                     <td><?= $intervention["intervention_id"] ?></td>
-                    <td><input type="date" name="date" value="<?= $date ?>" class="date"></td>
-                    <td><input type="time" name="heure" value="<?= $heure ?>" class="time"></td>
+                    <td><input type="date" name="date" value="<?= $date_intervention ?>" class="date"></td>
+                    <td><input type="time" name="heure" value="<?= $heure_intervention ?>" class="time"></td>
                     <td><?= $intervention["client_num"] ?></td>
                     <td>
                         <select name="numTechnicien" id="techniciens">
@@ -55,8 +55,21 @@
                     <tr>
                         <td><?= $materiel["materiel_num_serie"] ?></td>
                         <td><?= $materiel["materiel_type_reference"] ?></td>
-                        <td><?= $materiel["materiel_type_libelle"] ?></td>
-                        <td><?= $materiel["materiel_emplacement"] ?></td>
+                        <td>
+                            <select name="materiel_type<?= $materiel["materiel_type_id"] ?>" id="">
+                                <option value="<?= $materiel["materiel_type_id"] ?>">
+                                    <?= $materiel["materiel_type_libelle"] ?>
+                                </option>
+                                <?php foreach ($allMaterielsType as $materielType): ?>
+                                    <option value="<?= $materielType["materiel_type_id"] ?>">
+                                        <?= $materielType["materiel_type_libelle"] ?>
+                                    </option>
+                                <?php endforeach; ?>
+                            </select>
+                        </td>
+                        <td>
+                            <input name="materiel_emplacement<?= $materiel["materiel_type_id"] ?>" value="<?= $materiel["materiel_emplacement"] ?>">
+                        </td>
                         <td><?= $materiel["materiel_date_vente"] ?></td>
                         <td><?= $materiel["materiel_date_installation"] ?></td>
                         <td><?= $materiel["materiel_prix_vente"] ?></td>
