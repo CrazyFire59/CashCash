@@ -13,14 +13,12 @@
         </thead>
         <tbody>
             <?php foreach ($interventionsTechnicien as $intervention): ?>
-                <?php if ($intervention["tempsPasse"] == null && $intervention["commentaire"] == null): ?>
                     <tr>
                         <td>N°<?= $intervention["intervention_id"] ?></td>
                         <td><?= $intervention["intervention_date"] ?></td>
                         <td><?= $intervention["intervention_heure"] ?></td>
                         <td><a href="./?action=validerintervention&interventionId=<?=$intervention["intervention_id"]?>">Valider</a></td>
                     </tr>
-                <?php endif; ?>
             <?php endforeach; ?>
         </tbody>
     </table>

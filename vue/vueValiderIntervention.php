@@ -17,12 +17,11 @@
                     foreach ($materiels as $materiel) {
                         echo "<td>" . $materiel["materiel_num_serie"] . " <input type='hidden' id='" . $materiel["materiel_num_serie"]  . "' name='" . $materiel["materiel_num_serie"]  . "' value='" . $materiel["materiel_num_serie"]  . "' class='materiel'></td>";
                         echo "<td> <input type='text' id='" . $materiel["materiel_num_serie"]  . "commentaire" . "' name='" . $materiel["materiel_num_serie"]  . "commentaire" . "'  class='commentaire'> </td>";
-                        echo "<td> <input type='time' id='" . $materiel["materiel_num_serie"]  . "temps" . "' name='" . $materiel["materiel_num_serie"]  . "temps" . "' class='temps'> </td>";
+                        echo "<td> <input type='time' id='" . $materiel["materiel_num_serie"]  . "temps" . "' name='" . $materiel["materiel_num_serie"]  . "temps" . "' class='temps'> </td></tr>";
                     } 
                     ?>
-                </tr>
             </tbody>
-        </table>
+        </table><br>
 
         <input type="submit" name="valider" value="Valider Intervention" class="btn-valider-intervention">
     

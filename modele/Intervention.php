@@ -67,12 +67,15 @@ class Intervention extends Bdd{
         $conn = $this->connexionPDO();
 
         $req = $conn->prepare(
-            "SELECT * 
-            FROM intervention i         
+            "SELECT DISTINCT i.* 
+            FROM intervention i
             INNER JOIN client c ON i.client_num = c.client_num
             INNER JOIN employe e ON i.employe_num_matricule = e.employe_num_matricule
             INNER JOIN interventionmateriel im ON im.intervention_id = i.intervention_id
-            WHERE i.employe_num_matricule = :numTech"
+            WHERE i.employe_num_matricule = :numTech
+            AND im.tempsPasse IS NULL 
+            AND im.commentaire IS NULL;"
+            
         );
 
         $req->bindValue(":numTech", $numTech, PDO::PARAM_INT);

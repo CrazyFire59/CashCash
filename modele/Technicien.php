@@ -73,8 +73,21 @@ class Technicien extends Bdd{
 
         return $intervention;
     }*/
+
+    function getMatriculebyUsername(){
+        $username = $_SESSION['username'];
+        $conn = $this->connexionPDO();
+
+        $req = $conn->prepare(
+            "SELECT employe_num_matricule
+            FROM utilisateur
+            WHERE username = :username"
+        );
+        $req->bindValue(":username", $username, PDO::PARAM_STR);
+        $req->execute();
+        $matricule = $req->fetch();
+        return $matricule[0];
+    }  
+
 }
-
-    
-
 ?>

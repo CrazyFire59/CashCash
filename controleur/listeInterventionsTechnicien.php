@@ -14,9 +14,10 @@ include "$racine/vue/entete.html.php";
 
 
 $Intervention = new Intervention();
+$Technicien = new Technicien();
 
-// $interventionsTechnicien = $Intervention->getTechnicienInterventions($_SESSION['userNum']);
-$interventionsTechnicien = $Intervention->getTechnicienInterventions(3);
+$matricule = $Technicien->getMatriculebyUsername();
+$interventionsTechnicien = $Intervention->getTechnicienInterventions($matricule);
 
 //var_dump($_SESSION);
 // print_r($interventionsTechnicien);
