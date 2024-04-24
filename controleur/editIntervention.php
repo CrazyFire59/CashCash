@@ -20,8 +20,8 @@ $intervention = $Intervention->getInterventionById($idIntervention);
 
 $Materiel = new Materiel();
 $materielsOfIntervention = $Materiel->getInterventionMateriels($idIntervention);
-echo count($materielsOfIntervention);
-var_dump($materielsOfIntervention);
+// echo count($materielsOfIntervention);
+// var_dump($materielsOfIntervention);
 
 $allMaterielsType = $Materiel->getAllMaterielsType();
 
@@ -29,6 +29,11 @@ $Technicien = new Technicien();
 $techniciens = $Technicien->getAllTechniciens();
 
 $techniciensDansMemeAgenceQueClient = $Technicien->getAllTechniciensInSameAgencyAsClient($intervention["agence_num"]);
+ 
+$allMaterielsOfClient = $Materiel->getAllMaterielsOfClient($intervention["client_num"]);
+// echo '<pre>';
+// print_r($allMaterielsOfClient);
+// echo '</pre>';
 
 $date_intervention = $intervention["intervention_date"];
 $heure_intervention = $intervention["intervention_heure"];
@@ -56,6 +61,10 @@ if (isset($_POST['modifier'])) {
         // echo "---materiel_date_vente---<br/>";
         // echo $materiel_date_vente."<br/>";
 
+        if (isset($_POST['supprimer' . $materiel["materiel_num_serie"]])) {
+            $Materiel->deleteMateriel($materiel["materiel_num_serie"]);
+        }
+
         //on définit l'heure sur 00:00:00 ( setTime(0, 0, 0) ) et en meme temps on formate la date ( format('Y-m-d H:i:s') )
         // echo $materiel_date_vente->setTime(0, 0, 0)->format('Y-m-d H:i:s')."<br/>";
 
@@ -66,6 +75,21 @@ if (isset($_POST['modifier'])) {
     }
 
 }
+
+if (isset($_POST['add'])) {
+    $materiel_date_vente = $_POST['materiel_date_vente'];
+    $materiel_date_installation = $_POST['materiel_date_installation'];
+    $materiel_prix_vente = $_POST['materiel_prix_vente'];
+    $materiel_emplacement = $_POST['materiel_emplacement'];
+    $contrat_num = $_POST['contrat_num'];
+    $materiel_type_id = $_POST['materiel_type_id'];
+
+    $Materiel->addMateriel($intervention["client_num"], $intervention["intervention_id"],
+        $materiel_date_vente, $materiel_date_installation, $materiel_prix_vente, $materiel_emplacement, $contrat_num, $materiel_type_id,
+        
+    );
+}
+
 
 include "./vue/vueEditIntervention.php";
 
