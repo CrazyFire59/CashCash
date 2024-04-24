@@ -56,7 +56,7 @@
                         <td><?= $materiel["materiel_num_serie"] ?></td>
                         <td><?= $materiel["materiel_type_reference"] ?></td>
                         <td>
-                            <select name="materiel_type<?= $materiel["materiel_type_id"] ?>" id="">
+                            <select name="materiel_type<?= $materiel["materiel_num_serie"] ?>" id="">
                                 <option value="<?= $materiel["materiel_type_id"] ?>">
                                     <?= $materiel["materiel_type_libelle"] ?>
                                 </option>
@@ -67,29 +67,25 @@
                                 <?php endforeach; ?>
                             </select>
                         </td>
-                        <td>
-                            <input name="materiel_emplacement<?= $materiel["materiel_type_id"] ?>" value="<?= $materiel["materiel_emplacement"] ?>">
+                        <td> 
+                            <input name="materiel_emplacement<?= $materiel["materiel_num_serie"] ?>" value="<?= $materiel["materiel_emplacement"] ?>">
                         </td>
-                        <td><?= $materiel["materiel_date_vente"] ?></td>
-                        <td><?= $materiel["materiel_date_installation"] ?></td>
-                        <td><?= $materiel["materiel_prix_vente"] ?></td>
-
-                        <!-- <td><input type="date" name="date" value="<?= $date ?>" class="date"></td>
-                        <td><input type="time" name="heure" value="<?= $heure ?>" class="time"></td> -->
-                        
+                        <!-- date("Y-m-d", strtotime()) car la date est sous le format date heure (datetime) -->
+                        <td> 
+                            <input name="materiel_date_vente<?= $materiel["materiel_num_serie"] ?>" value="<?= date("Y-m-d", strtotime($materiel["materiel_date_vente"])) ?>" type="date">
+                        </td>
+                        <td> 
+                            <input name="materiel_date_installation<?= $materiel["materiel_num_serie"] ?>" value="<?= date("Y-m-d", strtotime($materiel["materiel_date_installation"])) ?>" type="date">
+                        </td>
+                        <td> 
+                            <input name="materiel_prix_vente<?= $materiel["materiel_num_serie"] ?>" value="<?= $materiel["materiel_prix_vente"] ?>">
+                        </td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>
         </table>
 
         <input type="submit" name="modifier" value="Modifier l'intervention" class="btn-valider-intervention">
-
-        <!-- snackbar -->
-        <!-- <button type="submit" class="btn-valider-intervention">Modifier l'intervention</button> -->
-        <!-- <button class="btn btn-lg" onclick="myFunction()">Show Snackbar</button> -->
-
-        <!-- The actual snackbar -->
-        <!-- <div id="snackbar">Intervention modifiée</div> -->
     
     </form>
 

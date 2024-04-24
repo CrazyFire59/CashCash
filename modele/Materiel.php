@@ -26,20 +26,30 @@ class Materiel extends Bdd{
         return $materiels;
     }
 
-    function editMateriel($materielNum, $materielTypeId) {
+    // function editMateriel($materielNum, $materiel_emplacement, $materiel_date_vente, $materiel_date_installation, $materiel_prix_vente) {
+    function editMateriel($materielNum, $materiel_emplacement, $materiel_date_vente, $materiel_date_installation, $materiel_prix_vente) {
         $conn = $this->connexionPDO();
         
         $req = $conn->prepare(
             "UPDATE materiel m
-            INNER JOIN interventionmateriel im ON m.materiel_num_serie = im.materiel_num_serie 
-            SET m.materiel_type_id = :materielTypeId
-            WHERE im.materiel_num_serie = :idIntervention"
+            SET 
+            m.materiel_emplacement = :materiel_emplacement,
+            m.materiel_date_vente = :materiel_date_vente,
+            m.materiel_date_installation = :materiel_date_installation,
+            m.materiel_prix_vente = :materiel_prix_vente
+            WHERE m.materiel_num_serie = :materielNum"
         );
     
-        $req->bindValue(":idIntervention", $materielNum, PDO::PARAM_INT);    
-        $req->bindValue(":materielTypeId", $materielTypeId, PDO::PARAM_INT);
+        $req->bindValue(":materielNum", $materielNum, PDO::PARAM_INT);    
+        $req->bindValue(":materiel_emplacement", $materiel_emplacement, PDO::PARAM_STR); 
+        $req->bindValue(":materiel_date_vente", $materiel_date_vente, PDO::PARAM_STR);
+        $req->bindValue(":materiel_date_installation", $materiel_date_installation, PDO::PARAM_STR);
+        $req->bindValue(":materiel_prix_vente", $materiel_prix_vente, PDO::PARAM_INT);
+        // $req->bindValue(":materielTypeId", $materielTypeId, PDO::PARAM_INT);
         $req->execute();
     }
+    
+    // -- SET m.materiel_type_id = :materielTypeId
 
     function getAllMaterielsType() {
         $conn = $this->connexionPDO();
