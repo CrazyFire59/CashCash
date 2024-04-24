@@ -61,10 +61,6 @@ if (isset($_POST['modifier'])) {
         // echo "---materiel_date_vente---<br/>";
         // echo $materiel_date_vente."<br/>";
 
-        if (isset($_POST['supprimer' . $materiel["materiel_num_serie"]])) {
-            $Materiel->deleteMateriel($materiel["materiel_num_serie"]);
-        }
-
         //on définit l'heure sur 00:00:00 ( setTime(0, 0, 0) ) et en meme temps on formate la date ( format('Y-m-d H:i:s') )
         // echo $materiel_date_vente->setTime(0, 0, 0)->format('Y-m-d H:i:s')."<br/>";
 
@@ -75,6 +71,16 @@ if (isset($_POST['modifier'])) {
     }
 
 }
+
+foreach($materielsOfIntervention as $materiel){
+
+    if (isset($_POST['supprimer' . $materiel["materiel_num_serie"]])) {
+        $Materiel->deleteMateriel($materiel["materiel_num_serie"]);
+    }
+    
+}
+
+
 
 if (isset($_POST['add'])) {
     $materiel_date_vente = $_POST['materiel_date_vente'];

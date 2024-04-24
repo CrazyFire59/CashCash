@@ -90,40 +90,39 @@
         </table>
 
         <input type="submit" name="modifier" value="Modifier l'intervention" class="btn-valider-intervention">
-    
-        <h2>Ajout d'un materiel</h2>
-
-        <form action="" method="post">
-            <label for="materiel_date_vente">Date de vente :</label>
-            <input type="date" name="materiel_date_vente" id="materiel_date_vente" required><br>
-
-            <label for="materiel_date_installation">Date d'installation :</label>
-            <input type="date" name="materiel_date_installation" id="materiel_date_installation" required><br>
-
-            <label for="materiel_prix_vente">Prix de vente :</label>
-            <input type="text" name="materiel_prix_vente" id="materiel_prix_vente" required><br>
-
-            <label for="materiel_emplacement">Emplacement :</label>
-            <input type="text" name="materiel_emplacement" id="materiel_emplacement" required><br>
-
-            <label for="contrat_num">Numéro du contrat :</label>
-            <input type="number" name="contrat_num" id="contrat_num"><br>
-
-            <label for="materiel_type_id">Nom du matériel :</label>
-            <div>
-                <select name="materiel_type_id">
-                    <?php foreach ($allMaterielsOfClient as $materielOfClient): ?>
-                        <option value="<?= $materielOfClient["materiel_type_id"] ?>">
-                            <?= $materielOfClient["materiel_type_libelle"] ?>
-                        </option>
-                    <?php endforeach; ?>
-                </select>
-            </div>
-
-            <input type="submit" name="add" value="Ajouter le matériel">
-        </form>
-
-
     </form>
+    
+    <h2>Ajout d'un materiel</h2>
+
+    <form action="" method="post">
+        <label for="materiel_date_vente">Date de vente :</label>
+        <input type="date" name="materiel_date_vente" id="materiel_date_vente" required><br>
+
+        <label for="materiel_date_installation">Date d'installation :</label>
+        <input type="date" name="materiel_date_installation" id="materiel_date_installation" required><br>
+
+        <label for="materiel_prix_vente">Prix de vente :</label>
+        <input type="text" name="materiel_prix_vente" id="materiel_prix_vente" required><br>
+
+        <label for="materiel_emplacement">Emplacement :</label>
+        <input type="text" name="materiel_emplacement" id="materiel_emplacement" required><br>
+
+        <label for="contrat_num">Numéro du contrat :</label>
+        <input type="number" name="contrat_num" id="contrat_num"><br>
+
+        <label for="materiel_type_id">Nom du matériel :</label>
+        <div>
+            <select name="materiel_type_id">
+                <?php foreach ($allMaterielsOfClient as $materielOfClient): ?>
+                    <option value="<?= $materielOfClient["materiel_type_id"] ?>">
+                        <?= $materielOfClient["materiel_type_libelle"] ?>
+                    </option>
+                <?php endforeach; ?>
+            </select>
+        </div>
+
+        <input type="submit" name="add" value="Ajouter le matériel">
+    </form>
+    
 
 </main>

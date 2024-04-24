@@ -55,12 +55,17 @@ class Materiel extends Bdd{
 
         $conn = $this->connexionPDO();
 
-        $req = $conn->prepare("DELETE FROM materiel WHERE materiel_num_serie = :materielNum");
+        $req1 = $conn->prepare("DELETE FROM interventionmateriel WHERE materiel_num_serie = :materielNum");
+        $req1->bindValue(":materielNum", $materielNum, PDO::PARAM_INT);
+        
+        $req1->execute();
 
-        $req->bindValue(":materielNum", $materielNum, PDO::PARAM_INT);
-
-        $req->execute();
+        $req2 = $conn->prepare("DELETE FROM materiel WHERE materiel_num_serie = :materielNum");
+        $req2->bindValue(":materielNum", $materielNum, PDO::PARAM_INT);
+       
+        $req2->execute();
     }
+    
 
     public function getAllMaterielsOfClient($clientNum) {
 
