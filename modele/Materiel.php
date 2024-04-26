@@ -51,19 +51,15 @@ class Materiel extends Bdd{
     
     // -- SET m.materiel_type_id = :materielTypeId
 
-    public function deleteMateriel($materielNum) {
+    public function deleteMateriel($materielNum, $interventionId) {
 
         $conn = $this->connexionPDO();
 
-        $req1 = $conn->prepare("DELETE FROM interventionmateriel WHERE materiel_num_serie = :materielNum");
+        $req1 = $conn->prepare("DELETE FROM interventionmateriel WHERE materiel_num_serie = :materielNum AND intervention_id = :interventionId");
         $req1->bindValue(":materielNum", $materielNum, PDO::PARAM_INT);
+        $req1->bindValue(":interventionId", $interventionId, PDO::PARAM_INT);
         
         $req1->execute();
-
-        $req2 = $conn->prepare("DELETE FROM materiel WHERE materiel_num_serie = :materielNum");
-        $req2->bindValue(":materielNum", $materielNum, PDO::PARAM_INT);
-       
-        $req2->execute();
     }
     
 
@@ -72,8 +68,7 @@ class Materiel extends Bdd{
         $conn = $this->connexionPDO();
 
         $req = $conn->prepare(
-            "SELECT * FROM materiel m 
-            INNER JOIN materiel_type mt ON mt.materiel_type_id = m.materiel_type_id
+            "SELECT materiel_num_serie FROM materiel m 
             WHERE m.client_num = :clientNum"
         );
 
@@ -86,30 +81,9 @@ class Materiel extends Bdd{
         return $materiels;
     }
 
-    public function addMateriel($client_num, $intervention_id, $materiel_date_vente, $materiel_date_installation, $materiel_prix_vente, $materiel_emplacement, $contrat_num, $materiel_type_id) {
+    public function addMateriel($materiel_num_serie, $intervention_id) {
 
         $conn = $this->connexionPDO();
-
-        $req = $conn->prepare(
-            "INSERT INTO materiel 
-                (materiel_date_vente, materiel_date_installation, materiel_prix_vente, materiel_emplacement, client_num, contrat_num, materiel_type_id) 
-            VALUES 
-                (:materiel_date_vente, :materiel_date_installation, :materiel_prix_vente, :materiel_emplacement, :client_num, :contrat_num, :materiel_type_id)"
-        );
-
-        $req->bindValue(":client_num", $client_num, PDO::PARAM_INT);
-        $req->bindValue(":materiel_date_vente", $materiel_date_vente, PDO::PARAM_STR);
-        $req->bindValue(":materiel_date_installation", $materiel_date_installation, PDO::PARAM_STR);
-        $req->bindValue(":materiel_prix_vente", $materiel_prix_vente, PDO::PARAM_STR);
-        $req->bindValue(":materiel_emplacement", $materiel_emplacement, PDO::PARAM_STR);
-        $req->bindValue(":contrat_num", $contrat_num, PDO::PARAM_INT);
-        $req->bindValue(":materiel_type_id", $materiel_type_id, PDO::PARAM_INT);
-
-        $req->execute();
-
-        // Récupérer le numéro de série du nouveau matériel inséré
-        $materiel_num_serie = $conn->lastInsertId();
-
         $req2 = $conn->prepare(
             "INSERT INTO interventionmateriel 
                 (materiel_num_serie, intervention_id) 

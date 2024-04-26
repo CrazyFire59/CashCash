@@ -35,7 +35,9 @@
                 </tr>
             </tbody>
         </table>
-
+        <br>
+        <input type="submit" name="modifier" value="Modifier">
+        <br><br>
         <h2>Materiels</h2>
 
         <table>
@@ -56,70 +58,32 @@
                     <tr>
                         <td><?= $materiel["materiel_num_serie"] ?></td>
                         <td><?= $materiel["materiel_type_reference"] ?></td>
-                        <td>
-                            <select name="materiel_type<?= $materiel["materiel_num_serie"] ?>" id="">
-                                <option value="<?= $materiel["materiel_type_id"] ?>">
-                                    <?= $materiel["materiel_type_libelle"] ?>
-                                </option>
-                                <?php foreach ($allMaterielsOfClient as $materielOfClient): ?>
-                                    <option value="<?= $materielOfClient["materiel_type_id"] ?>">
-                                        <?= $materielOfClient["materiel_type_libelle"] ?>
-                                    </option>
-                                <?php endforeach; ?>
-                            </select>
-                        </td>
-                        <td> 
-                            <input name="materiel_emplacement<?= $materiel["materiel_num_serie"] ?>" value="<?= $materiel["materiel_emplacement"] ?>">
-                        </td>
-                        <!-- date("Y-m-d", strtotime()) car la date est sous le format date heure (datetime) -->
-                        <td> 
-                            <input name="materiel_date_vente<?= $materiel["materiel_num_serie"] ?>" value="<?= date("Y-m-d", strtotime($materiel["materiel_date_vente"])) ?>" type="date">
-                        </td>
-                        <td> 
-                            <input name="materiel_date_installation<?= $materiel["materiel_num_serie"] ?>" value="<?= date("Y-m-d", strtotime($materiel["materiel_date_installation"])) ?>" type="date">
-                        </td>
-                        <td> 
-                            <input name="materiel_prix_vente<?= $materiel["materiel_num_serie"] ?>" value="<?= $materiel["materiel_prix_vente"] ?>">
-                        </td>
-                        <td> 
-                            <input type="submit" name="supprimer<?= $materiel["materiel_num_serie"] ?>" value="Supprimer">
-                        </td>
+                        <td><?= $materiel["materiel_type_libelle"] ?></td>
+                        <td><?= $materiel["materiel_emplacement"] ?></td>
+                        <td><?= date("Y-m-d", strtotime($materiel["materiel_date_vente"])) ?></td>
+                        <td><?= date("Y-m-d", strtotime($materiel["materiel_date_installation"])) ?></td>
+                        <td><?= $materiel["materiel_prix_vente"] ?></td>
+                        <td><input type="submit" name="supprimer<?= $materiel["materiel_num_serie"] ?>" value="Supprimer"></td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>
         </table>
-
-        <input type="submit" name="modifier" value="Modifier l'intervention" class="btn-valider-intervention">
     </form>
     
     <h2>Ajout d'un materiel</h2>
+    <br>
 
     <form action="" method="post">
-        <label for="materiel_date_vente">Date de vente :</label>
-        <input type="date" name="materiel_date_vente" id="materiel_date_vente" required><br>
-
-        <label for="materiel_date_installation">Date d'installation :</label>
-        <input type="date" name="materiel_date_installation" id="materiel_date_installation" required><br>
-
-        <label for="materiel_prix_vente">Prix de vente :</label>
-        <input type="text" name="materiel_prix_vente" id="materiel_prix_vente" required><br>
-
-        <label for="materiel_emplacement">Emplacement :</label>
-        <input type="text" name="materiel_emplacement" id="materiel_emplacement" required><br>
-
-        <label for="contrat_num">Numéro du contrat :</label>
-        <input type="number" name="contrat_num" id="contrat_num"><br>
-
-        <label for="materiel_type_id">Nom du matériel :</label>
+        <label for="materiel_type_id">Selectionner le num du matériel :</label>
         <div>
-            <select name="materiel_type_id">
+            <select name="materiel_num_serie">
                 <?php foreach ($allMaterielsOfClient as $materielOfClient): ?>
-                    <option value="<?= $materielOfClient["materiel_type_id"] ?>">
-                        <?= $materielOfClient["materiel_type_libelle"] ?>
+                    <option value="<?= $materielOfClient["materiel_num_serie"] ?>">
+                        <?= $materielOfClient["materiel_num_serie"] ?>
                     </option>
                 <?php endforeach; ?>
             </select>
-        </div>
+        </div><br>
 
         <input type="submit" name="add" value="Ajouter le matériel">
     </form>

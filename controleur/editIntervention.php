@@ -30,7 +30,7 @@ $techniciens = $Technicien->getAllTechniciens();
 
 $techniciensDansMemeAgenceQueClient = $Technicien->getAllTechniciensInSameAgencyAsClient($intervention["agence_num"]);
  
-$allMaterielsOfClient = $Materiel->getAllMaterielsOfClient($intervention["client_num"]);
+$allMaterielsOfClient = $Materiel->getAllMaterielsOfClient($intervention["client_num"]); 
 // echo '<pre>';
 // print_r($allMaterielsOfClient);
 // echo '</pre>';
@@ -47,35 +47,18 @@ if (isset($_POST['modifier'])) {
     $Intervention->editIntervention($idIntervention, 
         $date_intervention, $heure_intervention, $technicien_intervention,
     );
-
-    foreach($materielsOfIntervention as $materiel){
-        $materiel_type_id = $_POST["materiel_type" . $materiel["materiel_num_serie"]];
-        $materiel_emplacement = $_POST["materiel_emplacement" . $materiel["materiel_num_serie"]];
-        //on crée un objet DateTime en utilisant createFromFormat ( DateTime::createFromFormat('Y-m-d', date) )
-        $materiel_date_vente = DateTime::createFromFormat('Y-m-d', $_POST["materiel_date_vente" . $materiel["materiel_num_serie"]]);
-        $materiel_date_installation = DateTime::createFromFormat('Y-m-d', $_POST["materiel_date_installation" . $materiel["materiel_num_serie"]]);
-        $materiel_prix_vente = $_POST["materiel_prix_vente" . $materiel["materiel_num_serie"]];
-
-        // echo "---materiel_emplacement---<br/>";
-        // echo $materiel_emplacement."<br/>";
-        // echo "---materiel_date_vente---<br/>";
-        // echo $materiel_date_vente."<br/>";
-
-        //on définit l'heure sur 00:00:00 ( setTime(0, 0, 0) ) et en meme temps on formate la date ( format('Y-m-d H:i:s') )
-        // echo $materiel_date_vente->setTime(0, 0, 0)->format('Y-m-d H:i:s')."<br/>";
-
-        //on définit l'heure sur 00:00:00 ( setTime(0, 0, 0) ) et en meme temps on formate la date ( format('Y-m-d H:i:s') )
-        $Materiel->editMateriel($materiel["materiel_num_serie"], 
-            $materiel_emplacement, $materiel_date_vente->setTime(0, 0, 0)->format('Y-m-d H:i:s'), $materiel_date_installation->setTime(0, 0, 0)->format('Y-m-d H:i:s'), $materiel_prix_vente
-        );
-    }
+    // refresh
+    header("Location: ?action=editIntervention&interventionId=" . $idIntervention);
 
 }
+
 
 foreach($materielsOfIntervention as $materiel){
 
     if (isset($_POST['supprimer' . $materiel["materiel_num_serie"]])) {
-        $Materiel->deleteMateriel($materiel["materiel_num_serie"]);
+        $Materiel->deleteMateriel($materiel["materiel_num_serie"], $idIntervention);
+        // refresh
+        header("Location: ?action=editIntervention&interventionId=" . $idIntervention);
     }
     
 }
@@ -83,17 +66,11 @@ foreach($materielsOfIntervention as $materiel){
 
 
 if (isset($_POST['add'])) {
-    $materiel_date_vente = $_POST['materiel_date_vente'];
-    $materiel_date_installation = $_POST['materiel_date_installation'];
-    $materiel_prix_vente = $_POST['materiel_prix_vente'];
-    $materiel_emplacement = $_POST['materiel_emplacement'];
-    $contrat_num = $_POST['contrat_num'];
-    $materiel_type_id = $_POST['materiel_type_id'];
+    $materiel_num_serie = $_POST['materiel_num_serie'];
 
-    $Materiel->addMateriel($intervention["client_num"], $intervention["intervention_id"],
-        $materiel_date_vente, $materiel_date_installation, $materiel_prix_vente, $materiel_emplacement, $contrat_num, $materiel_type_id,
-        
-    );
+    $Materiel->addMateriel($materiel_num_serie, $idIntervention);
+    // refresh
+    header("Location: ?action=editIntervention&interventionId=" . $idIntervention);
 }
 
 
