@@ -1,5 +1,14 @@
 <?php
-
+/**
+ * La classe Intervention gère les opérations liées aux interventions.
+ * Elle permet de récupérer des informations sur les interventions, de valider les interventions
+ * et de modifier les détails des interventions.
+ * 
+ * @package    CashCash
+ * @subpackage Modele
+ * @version    1.0
+ * @since      2024-05-20
+ */
 class Intervention extends Bdd{
 
     function getAllInterventions(){
@@ -153,22 +162,6 @@ class Intervention extends Bdd{
 
         $req->execute();
     }
-
-    // function editMaterielIntervention($idIntervention, $materielTypeId) {
-    //     $conn = $this->connexionPDO();
-        
-    //     $req = $conn->prepare(
-    //         "UPDATE materiel m
-    //         INNER JOIN interventionmateriel im ON m.materiel_num_serie = im.materiel_num_serie 
-    //         SET m.materiel_type_id = :materielTypeId
-    //         WHERE im.materiel_num_serie = :idIntervention"
-    //     );
-    
-    //     $req->bindValue(":idIntervention", $idIntervention, PDO::PARAM_INT);    
-    //     $req->bindValue(":materielTypeId", $materielTypeId, PDO::PARAM_INT);
-    //     $req->execute();
-    // }
-    
 
     function getAllMaterielFromIntervention($numIntervention){
 

@@ -1,5 +1,15 @@
 <?php
-
+/**
+ * La classe Materiel gère les opérations liées aux matériels.
+ * Elle permet de récupérer les matériels associés à une intervention,
+ * de modifier les détails d'un matériel, de supprimer un matériel,
+ * d'ajouter un matériel à une intervention, et de récupérer tous les types de matériels.
+ * 
+ * @package    CashCash
+ * @subpackage Modele
+ * @version    1.0
+ * @since      2024-05-20
+ */
 class Materiel extends Bdd{
 
     function getInterventionMateriels($interventionId){

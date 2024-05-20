@@ -1,7 +1,21 @@
 <?php
 
+/**
+ * La classe Technicien gère les opérations liées aux techniciens.
+ * Elle permet de récupérer des informations sur les techniciens enregistrés dans la base de données.
+ * 
+ * @package    CashCash
+ * @subpackage Modele
+ * @version    1.0
+ * @since      2024-05-20
+ */
 class Technicien extends Bdd{
 
+    /**
+     * Récupère toutes les informations sur les techniciens.
+     *
+     * @return array Les informations sur les techniciens.
+     */
     function getAllTechniciens(){
 
         $conn = $this->connexionPDO();
@@ -18,6 +32,12 @@ class Technicien extends Bdd{
         return $techniciens;
     }
 
+    /**
+     * Récupère les informations sur un technicien spécifique en fonction de son numéro de matricule.
+     *
+     * @param int $numTech Le numéro de matricule du technicien.
+     * @return array Les informations sur le technicien spécifique.
+     */
     function getTechnicienByNumTech($numTech){
 
         $conn = $this->connexionPDO();
@@ -37,6 +57,12 @@ class Technicien extends Bdd{
         return $technicien;
     }
 
+    /**
+     * Récupère toutes les informations sur les techniciens travaillant dans la même agence qu'un client spécifique.
+     *
+     * @param int $numAgenceOfClient Le numéro d'agence du client.
+     * @return array Les informations sur les techniciens travaillant dans la même agence que le client.
+     */
     function getAllTechniciensInSameAgencyAsClient($numAgenceOfClient){
 
         $conn = $this->connexionPDO();
@@ -56,7 +82,7 @@ class Technicien extends Bdd{
         return $techniciens;
     }
 
-    /*function getAllInterventions(){
+        /*function getAllInterventions(){
 
         $conn = $this->connexionPDO();
 
@@ -94,6 +120,11 @@ class Technicien extends Bdd{
         return $intervention;
     }*/
 
+    /**
+     * Récupère le numéro de matricule de l'utilisateur actuellement connecté.
+     *
+     * @return int Le numéro de matricule de l'utilisateur connecté.
+     */
     function getMatriculebyUsername(){
         $username = $_SESSION['username'];
         $conn = $this->connexionPDO();

@@ -8,8 +8,6 @@ include_once "$racine/modele/Bdd.php";
 include_once "$racine/modele/Intervention.php";
 include_once "$racine/modele/Technicien.php";
 
-// include_once "./modele/Bdd.php";
-// include_once "./modele/Intervention.php";
 
 if(isset($_SESSION["role"])){
     if($_SESSION["role"]==1){
@@ -26,7 +24,7 @@ if(isset($_SESSION["role"])){
 }
 
 if ($role == "Assistant"){
-    // echo '<pre>';
+    
 
     $titre = "Intervention Assistant";
 
@@ -36,10 +34,7 @@ if ($role == "Assistant"){
     $Intervention = new Intervention();
 
     $interventions = $Intervention->getAllInterventions();
-    // var_dump($interventions[0]);
-    // echo '<pre>';
-    // print_r($interventions[0]);
-    // echo '</pre>';
+
     $Technicien = new Technicien();
     $techniciens = $Technicien->getAllTechniciens();
 

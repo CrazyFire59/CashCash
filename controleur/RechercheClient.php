@@ -12,10 +12,7 @@ if (isset($_POST['recherche'])) {
     $recherche = $_POST['recherche'];
     $clients = $clientmodel->rechercheClient($recherche);
 }
-//on a pas acces au site ?
-// si moi
-// lance filezilla 
-//j'ai fait connexion
+
 $titre = "Fichier Client";
 
 include "$racine/vue/entete.html.php";
